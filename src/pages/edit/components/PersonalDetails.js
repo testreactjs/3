@@ -1,9 +1,5 @@
 import React from 'react'
-import { Form, Field } from 'react-final-form'
-import InputField from '../../../components/fields/InputField'
-import SelectField from '../../../components/fields/SelectField'
-import CalendarField from '../../../components/fields/CalendarField'
-import ButtonField from '../../../components/fields/ButtonField'
+import PersonalDetailsForm from './PersonalDetailsForm'
 
 
 class PersonalDetails extends React.Component {
@@ -15,21 +11,10 @@ class PersonalDetails extends React.Component {
       <section className="boss-content-switcher__chapters">
         <article className="boss-content-switcher__chapter boss-content-switcher__chapter_state_visible" data-chapter="employment">
           <header className="boss-content-switcher__header">
-            <h2 className="boss-content-switcher__title">PersonalDetails</h2>
+            <h2 className="boss-content-switcher__title">Personal Details</h2>
           </header>
           <div className="boss-content-switcher__content">
-
-            <Form onSubmit={this.onSubmit} render={({ handleSubmit, form, submitting, pristine, values }) =>  (
-                <form onSubmit={handleSubmit} className="boss-form boss-form_page_profile-edit">
-                  <Field component={InputField} label="First Name*" />
-                  <Field component={InputField} label="Surname*" />
-                  <Field component={SelectField} label="Gender*" />
-                  <Field component={CalendarField} label="Date of birth*" />
-                  <Field component={ButtonField} label="Save" />
-               </form>
-              )
-            }
-            />
+          <PersonalDetailsForm />
           </div>
         </article>
       </section>

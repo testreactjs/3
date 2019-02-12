@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
-import ContactDetails from './components/ContactDetailsForm'
+import ContactDetails from './components/ContactDetails'
 import EmploymentDetails from './components/EmploymentDetails'
 import PersonalDetails from './components/PersonalDetails'
 class EditProfile extends React.Component {
