@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import DatePicker from "react-datepicker";
 
+
+
+
 export default class CalendarField extends Component {
   constructor(props) {
     super(props);
@@ -20,10 +23,13 @@ export default class CalendarField extends Component {
         <label className="boss-form__label">
          <span className="boss-form__label-text">{label}</span>
          <div className="date-picker-input">
+
          <DatePicker
         selected={this.state.startDate}
         onChange={this.handleChange}
       />
+
+
         </div>
          </label>
       </div>

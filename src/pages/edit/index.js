@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import ContactDetails from './components/ContactDetailsForm'
 import EmploymentDetails from './components/EmploymentDetails'
 import PersonalDetails from './components/PersonalDetails'
@@ -14,9 +14,9 @@ class EditProfile extends React.Component {
               <div className="boss-content-switcher__inner">
                 <aside className="boss-content-switcher__side">
                   <nav className="boss-content-switcher__nav">
-                    <Link className="boss-content-switcher__nav-link boss-content-switcher__nav-link_state_active" to="/employment-details">Employment Details</Link>
-                    <Link className="boss-content-switcher__nav-link" to="/personal-details">Personal Details</Link>
-                    <Link className="boss-content-switcher__nav-link" to="/contact-details">Contact Details</Link>
+                    <NavLink className="boss-content-switcher__nav-link" activeClassName="boss-content-switcher__nav-link_state_active" to="/employment-details">Employment Details</NavLink>
+                    <NavLink className="boss-content-switcher__nav-link" activeClassName="boss-content-switcher__nav-link_state_active" to="/personal-details">Personal Details</NavLink>
+                    <NavLink className="boss-content-switcher__nav-link" activeClassName="boss-content-switcher__nav-link_state_active" to="/contact-details">Contact Details</NavLink>
                   </nav>
                 </aside>
                 <Route path="/employment-details" component={EmploymentDetails} />

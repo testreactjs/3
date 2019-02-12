@@ -1,5 +1,6 @@
 import React from 'react'
 import InputField from '../../../components/fields/InputField'
+import ButtonField from '../../../components/fields/ButtonField'
 import { Form, Field } from 'react-final-form'
 class ContactDetails extends React.Component {
   onSubmit = () => {
@@ -21,6 +22,7 @@ class ContactDetails extends React.Component {
                   <Field component={InputField} label="Postcode" />
                   <Field component={InputField} label="Country" />
                   <Field component={InputField} label="County" />
+                  <Field component={ButtonField} label="Save" />
 
                </form> )
             }
