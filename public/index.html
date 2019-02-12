@@ -2,40 +2,162 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="theme-color" content="#000000" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <title>Edit Profile</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <div class="" style="display: flex;align-items: stretch;position: relative;width: 100%;padding: 25px 40px 60px;">
+      <div style="display: block;width: 100%;max-width: 1200px;margin: 0 auto;">
+      <div  id="root"></div>
+        <section class="switcher__chapters">
+          <article class="switcher__chapter switcher__chapter_state_visible" data-chapter="employment">
+              <header class="switcher__header">
+                  <h2 class="switcher__title">Employment Details</h2>
+              </header>
+              <div class="switcher__content">
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+                  <!-- Common form start -->
+                  <form action="#" class="boss-form boss-form_page_profile-edit">
+                      <div class="boss-form__field">
+                          <label for="select-venue" class="boss-form__label"><span class="boss-form__label-text">Main Venue</span></label>
+                          <div class="boss-form__select boss-form__select_state_error">
+                              <!-- React-select generated markup. For the demo purposes only -->
+                              <div class="Select Select--single" style="overflow: hidden;">
+                                  <div class="Select-control"><span class="Select-multi-value-wrapper" id="react-select-2--value"><div class="Select-placeholder"></div><div role="combobox" aria-expanded="true" aria-owns="react-select-2--list" aria-activedescendant="react-select-2--option-1" class="Select-input" style="border: 0px none; width: 1px; display: inline-block;"></div></span><span class="Select-arrow-zone"><span class="Select-arrow"></span></span>
+                                  </div>
+                                  <div class="Select-menu-outer">
+                                      <div role="listbox" class="Select-menu" id="react-select-2--list">
+                                          <div class="Select-option is-focused" id="react-select-2--option-1">Option</div>
+                                          <div class="Select-option" id="react-select-2--option-2">Option</div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+                          <div class="boss-form__error">
+                              <p class="boss-form__error-text">
+                                  <span class="boss-form__error-line">This is a required field!</span>
+                              </p>
+                          </div>
+                      </div>
+                      <div class="boss-form__field">
+                          <label class="boss-form__label">
+                              <span class="boss-form__label-text">Other Venues</span>
+                              <input name="other-venues" type="text" class="boss-form__input">
+                          </label>
+                      </div>
+                      <div class="boss-form__field">
+                          <label for="select-staff-type" class="boss-form__label"><span class="boss-form__label-text">Staff Type*</span></label>
+                          <div class="boss-form__select">
+                              <!-- React-select generated markup. For the demo purposes only -->
+                              <div class="Select Select--single" style="overflow: hidden;">
+                                  <div class="Select-control"><span class="Select-multi-value-wrapper" id="react-select-2--value"><div class="Select-placeholder"></div><div role="combobox" aria-expanded="true" aria-owns="react-select-2--list" aria-activedescendant="react-select-2--option-1" class="Select-input" style="border: 0px none; width: 1px; display: inline-block;"></div></span><span class="Select-arrow-zone"><span class="Select-arrow"></span></span>
+                                  </div>
+                                  <div class="Select-menu-outer">
+                                      <div role="listbox" class="Select-menu" id="react-select-2--list">
+                                          <div class="Select-option is-focused" id="react-select-2--option-1">Option</div>
+                                          <div class="Select-option" id="react-select-2--option-2">Option</div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="boss-form__field">
+                          <p class="boss-form__label"><span class="boss-form__label-text">Starts at*</span></p>
+
+                          <div class="date-picker-input date-picker-input_type_icon">
+                              <!-- React-datepicker generated markup. For the demo purposes only -->
+                              <div class="react-datepicker__input-container react-datepicker__tether-target react-datepicker__tether-element-attached-bottom react-datepicker__tether-element-attached-left react-datepicker__tether-target-attached-top react-datepicker__tether-target-attached-left react-datepicker__tether-enabled">
+                                  <div class="date-picker-input-field"></div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="boss-form__field">
+                          <label for="select-pay-rate" class="boss-form__label"><span class="boss-form__label-text">Pay rate*</span></label>
+                          <div class="boss-form__select">
+                              <!-- React-select generated markup. For the demo purposes only -->
+                              <div class="Select Select--single" style="overflow: hidden;">
+                                  <div class="Select-control"><span class="Select-multi-value-wrapper" id="react-select-2--value"><div class="Select-placeholder"></div><div role="combobox" aria-expanded="true" aria-owns="react-select-2--list" aria-activedescendant="react-select-2--option-1" class="Select-input" style="border: 0px none; width: 1px; display: inline-block;"></div></span><span class="Select-arrow-zone"><span class="Select-arrow"></span></span>
+                                  </div>
+                                  <div class="Select-menu-outer">
+                                      <div role="listbox" class="Select-menu" id="react-select-2--list">
+                                          <div class="Select-option is-focused" id="react-select-2--option-1">Option</div>
+                                          <div class="Select-option" id="react-select-2--option-2">Option</div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="boss-form__field">
+                          <label class="boss-form__label">
+                              <span class="boss-form__label-text">Day Preference</span>
+                              <input name="day-pref" type="text" class="boss-form__input">
+                          </label>
+                          <p class="boss-form__field-note">Preferred days to work displayed to the rota (e.g mornings and weekends)</p>
+                      </div>
+                      <div class="boss-form__field">
+                          <label class="boss-form__label">
+                              <span class="boss-form__label-text">Hours Preference</span>
+                              <input name="hours-pref" type="text" class="boss-form__input">
+                          </label>
+                          <p class="boss-form__field-note">Preferred number of hours to work per week displayed in the rota (e.g 40,20+)</p>
+                      </div>
+                      <div class="boss-form__field">
+                          <label class="boss-form__label">
+                              <span class="boss-form__label-text">National Insurance Number</span>
+                              <input name="insurance-number" type="text" class="boss-form__input">
+                          </label>
+                      </div>
+                      <div class="boss-form__field">
+                          <label class="boss-form__label">
+                              <span class="boss-form__label-text">Sage ID</span>
+                              <input name="sage-id" type="text" class="boss-form__input">
+                          </label>
+                      </div>
+                      <div class="boss-form__field">
+                          <!-- Choice list start -->
+                          <div class="boss-choice-list">
+                              <div class="boss-choice-list__header">
+                                  <h3 class="boss-choice-list__title">Starter Employement Status Statement</h3>
+                              </div>
+                              <div class="boss-choice-list__content">
+                                  <p class="boss-choice-list__text">Tick one that applies</p>
+                                  <div class="boss-choice-list__controls">
+                                      <label class="boss-choice-list__radio-label">
+                                          <input type="radio" name="employement-status" value="1" class="boss-choice-list__radio-button" checked="">
+                                          <span class="boss-choice-list__radio-label-text">I have supplied my P45 from my previous employer</span>
+                                      </label>
+                                      <label class="boss-choice-list__radio-label">
+                                          <input type="radio" name="employement-status" value="2" class="boss-choice-list__radio-button">
+                                          <span class="boss-choice-list__radio-label-text">This is my first job since the 6th of April. I have not been receiving taxable jobseekers allowance, Incapacity benefits or a state/occupational pernsion</span>
+                                      </label>
+                                      <label class="boss-choice-list__radio-label">
+                                          <input type="radio" name="employement-status" value="3" class="boss-choice-list__radio-button">
+                                          <span class="boss-choice-list__radio-label-text">This is now my only job. Since the 6th of April I have had another jobs received taxable jobseekers allowance, Incapacity benefit. I don’t receivea state/occupational pension</span>
+                                      </label>
+                                      <label class="boss-choice-list__radio-label">
+                                          <input type="radio" name="employement-status" value="4" class="boss-choice-list__radio-button">
+                                          <span class="boss-choice-list__radio-label-text">I have another job or receive a state/occupational pernsion</span>
+                                      </label>
+                                      <label class="boss-choice-list__radio-label">
+                                          <input type="radio" name="employement-status" value="5" class="boss-choice-list__radio-button">
+                                          <span class="boss-choice-list__radio-label-text">I left a course of higher education before the 6th of April &amp; receive my first student loan instalmen on or after the 1st of September 1998 &amp; I have not fully repaid my student loan</span>
+                                      </label>
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- Choice form end -->
+                      </div>
+                      <div class="boss-form__field boss-form__field_justify_end">
+                          <button class="boss-button boss-form__submit boss-form__submit_adjust_single" type="submit">Save</button>
+                      </div>
+                  </form>
+                  <!-- Common form end -->
+
+              </div>
+          </article>
+
+
+      </div>
+    </div>
   </body>
 </html>
