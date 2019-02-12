@@ -12,7 +12,7 @@ export default class InputField extends Component {
       <div className="boss-form__field">
         <label className="boss-form__label">
          <span className="boss-form__label-text">{label}</span>
-         <input name="first-name" type="text" className="boss-form__input" required="" />
+         <input type="text" className="boss-form__input"/>
          </label>
       </div>
     )

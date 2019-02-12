@@ -5,13 +5,11 @@ import SelectField from '../../../components/fields/SelectField'
 import CalendarField from '../../../components/fields/CalendarField'
 import ButtonField from '../../../components/fields/ButtonField'
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
-const onSubmit = async values => {
-  await sleep(300)
-  window.alert(JSON.stringify(values, 0, 2))
-}
 
 class PersonalDetails extends React.Component {
+  onSubmit = () => {
+    console.log("onSubmit.PersonalDetails");
+  }
   render() {
     return (
       <section className="boss-content-switcher__chapters">
@@ -21,18 +19,16 @@ class PersonalDetails extends React.Component {
           </header>
           <div className="boss-content-switcher__content">
 
-            <Form onSubmit={onSubmit} render={({ handleSubmit, form, submitting, pristine, values }) => {
-              return (
+            <Form onSubmit={this.onSubmit} render={({ handleSubmit, form, submitting, pristine, values }) =>  (
                 <form onSubmit={handleSubmit} className="boss-form boss-form_page_profile-edit">
                   <Field component={InputField} label="First Name*" />
                   <Field component={InputField} label="Surname*" />
                   <Field component={SelectField} label="Gender*" />
                   <Field component={CalendarField} label="Date of birth*" />
                   <Field component={ButtonField} label="Save" />
-                  <pre>{JSON.stringify(values, null, 2)}</pre>
-                </form>
+               </form>
               )
-            }}
+            }
             />
           </div>
         </article>
@@ -42,3 +38,5 @@ class PersonalDetails extends React.Component {
 }
 
 export default PersonalDetails;
+
+//<pre>{JSON.stringify(values, null, 2)}</pre>
