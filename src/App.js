@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import EditProfile from './EditProfile'
+import EditProfile from './pages/edit/index'
 
 
 class App extends Component {
