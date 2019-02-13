@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import DatePicker from "react-datepicker";
+import moment from 'moment'
 import "react-datepicker/dist/react-datepicker.css";
 
 export default class CalendarField extends Component {
@@ -13,7 +14,8 @@ export default class CalendarField extends Component {
       startDate: date
     });
     const { input } = this.props;
-    input.onChange(date);
+    const formattedDate = moment(date).format('DD-MM-YYYY');
+    input.onChange(formattedDate);
   }
 
   render() {
@@ -27,6 +29,7 @@ export default class CalendarField extends Component {
               selected={this.state.startDate}
               onChange={this.handleChange}
               withPortal
+              dateFormat="dd-MM-YYYY"
             />
           </div>
         </label>

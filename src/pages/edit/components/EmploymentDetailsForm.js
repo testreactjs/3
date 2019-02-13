@@ -26,11 +26,11 @@ class EmploymentDetails extends React.Component {
           <Field name="nationalInsuranceNumber" component={InputField} label="National Insurance Number" />
           <Field name="sageId" component={InputField} label="Sage ID" />
 
-          <Field name="sageId" component={ChoiceListField} label="Sage ID" />
+          <Field name="employmentStatus" component={ChoiceListField} label="Sage ID" title="Starter Employement Status Statement" note="Tick one that applies" />
           <div className="boss-form__field boss-form__field_justify_end">
             <button className="boss-button boss-form__submit boss-form__submit_adjust_single" type="submit">Save</button>
           </div>
-
+          <pre>{JSON.stringify(values, undefined, 2)}</pre>
         </form>)
       }
       />

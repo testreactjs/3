@@ -19,15 +19,17 @@ export default class SelectField extends Component {
     return (
       <div className="boss-form__field">
         <label className="boss-form__label">
-         <span className="boss-form__label-text">{label}</span>
-         <Select className="boss-form__select"
-					onChange={this.handleChange}
-          value={selectedOption}
-					options={options}
-					simpleValue
-            />
-         </label>
-         {meta.error && meta.touched && <span>{meta.error}</span>}
+          <span className="boss-form__label-text">{label}</span>
+        </label>
+        <div className="boss-form__select">
+          <Select
+            onChange={this.handleChange}
+            value={selectedOption}
+            options={options}
+            simpleValue
+          />
+        </div>
+        {meta.error && meta.touched && <span>{meta.error}</span>}
       </div>
     )
   }
