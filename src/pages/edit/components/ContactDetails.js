@@ -16,6 +16,7 @@ class ContactDetails extends React.Component {
         <div className="boss-content-switcher__content">
           <ContactDetailsForm />
         </div>
+
       </article>
     </section>
     )

@@ -6,6 +6,8 @@ class PersonalDetails extends React.Component {
   onSubmit = () => {
     console.log("onSubmit.PersonalDetails");
   }
+
+
   render() {
     return (
       <section className="boss-content-switcher__chapters">

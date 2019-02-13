@@ -1,20 +1,18 @@
 import React, { Component } from 'react'
 
 export default class InputField extends Component {
-  handleClick = () => {
-    const {input} = this.props;
-    input.onChange('FOO');
-  }
   render() {
-    console.log(this.props)
-    const { input, label, note } = this.props;
+    console.log("InputField", this.props)
+    const { input, label, note, meta, required } = this.props;
+
     return (
       <div className="boss-form__field">
         <label className="boss-form__label">
          <span className="boss-form__label-text">{label}</span>
-         <input type="text" className="boss-form__input"/>
+         <input type="text" className="boss-form__input" onChange={(event) => input.onChange(event.target.value)} required={required?"required":''} />
          </label>
          {note && (<p className="boss-form__field-note">{note}</p>)}
+         {meta.error && meta.touched && <span>{meta.error}</span>}
       </div>
     )
   }

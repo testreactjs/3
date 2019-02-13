@@ -8,10 +8,13 @@ export default class SelectField extends Component {
   handleChange = (selectedOption) => {
     this.setState({ selectedOption });
     console.log("OnChange SelectField", this.props)
+    const { input } = this.props;
+    input.onChange(selectedOption)
   }
 
+
   render() {
-    const { label } = this.props;
+    const { label, meta, options } = this.props;
     const { selectedOption } = this.state;
     return (
       <div className="boss-form__field">
@@ -20,16 +23,11 @@ export default class SelectField extends Component {
          <Select className="boss-form__select"
 					onChange={this.handleChange}
           value={selectedOption}
-					options={ [
-      { value: 'male', label: 'Male' },
-      { value: 'femail', label: 'Female' }
-    ]}
+					options={options}
 					simpleValue
             />
-
-
-
          </label>
+         {meta.error && meta.touched && <span>{meta.error}</span>}
       </div>
     )
   }

@@ -12,10 +12,12 @@ export default class CalendarField extends Component {
     this.setState({
       startDate: date
     });
+    const { input } = this.props;
+    input.onChange(date);
   }
 
   render() {
-    const { label } = this.props;
+    const { label, meta } = this.props;
     return (
       <div className="boss-form__field">
         <label className="boss-form__label">
@@ -28,6 +30,7 @@ export default class CalendarField extends Component {
             />
           </div>
         </label>
+        {meta.error && meta.touched && <span>{meta.error}</span>}
       </div>
     )
   }
