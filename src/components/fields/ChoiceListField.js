@@ -17,7 +17,7 @@ class ChoiceListField extends Component {
       const {input} = this.props;
       const isChecked = key === input.value;
       return (
-      <label className="boss-choice-list__radio-label">
+      <label key={key} className="boss-choice-list__radio-label">
         <input key={key} value={key} checked={isChecked} type="radio" className="boss-choice-list__radio-button" onChange={this.handleChange} />
         <span className="boss-choice-list__radio-label-text">{value}</span>
       </label>
