@@ -1,20 +1,12 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import * as API from '../utils/api-service'
 export default class UsersList extends Component {
+  constructor(props) {
+    super(props)
+    API.getAllMembers();
+  }
+
   render() {
-    const config = {
-      headers: {'Authorization': 'Token token="f4d91314f64309521727d059b271fe9b"'}
-    };
-    axios.get('https://purrweb-internship.herokuapp.com/api/v1/staff_members/', config)
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
-    .then(function () {
-      // always executed
-    });
 
     return (
       <div className="boss-table boss-table_page_staff-members-index">
