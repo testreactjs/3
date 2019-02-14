@@ -1,10 +1,10 @@
 import React from 'react'
 import { Form, Field } from 'react-final-form'
-import InputField from '../../../components/fields/InputField'
-import CalendarField from '../../../components/fields/CalendarField'
-import ChoiceListField from '../../../components/fields/ChoiceListField'
-import SelectField from '../../../components/fields/SelectField'
-import {requiredDefault} from '../../../utils/validators'
+import InputField from '../../../../components/fields/InputField'
+import CalendarField from '../../../../components/fields/CalendarField'
+import ChoiceListField from '../../../../components/fields/ChoiceListField'
+import SelectField from '../../../../components/fields/SelectField'
+import {requiredDefault} from '../../../../utils/validators'
 
 class EmploymentDetails extends React.Component {
   onSubmit = (values) => {

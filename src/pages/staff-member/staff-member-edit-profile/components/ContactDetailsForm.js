@@ -1,7 +1,7 @@
 import React from 'react'
-import InputField from '../../../components/fields/InputField'
+import InputField from '../../../../components/fields/InputField'
 import { Form, Field } from 'react-final-form'
-import {requiredEmail} from '../../../utils/validators'
+import {requiredEmail} from '../../../../utils/validators'
 
 class ContactDetails extends React.Component {
   onSubmit = (values) => {

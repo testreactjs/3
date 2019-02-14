@@ -3,15 +3,11 @@ import ReactDOM from 'react-dom';
 import './assets/sass/index.sass';
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
-import App from './App';
-import * as actions from './redux/actions'
+import App from './pages/index';
+
 
 class Main extends React.Component {
-  componentWillMount() {
-    store.dispatch(actions.fetchStaffMembersAction())
-  }
   render() {
-
     return (
       <Provider store={store} >
         <App />

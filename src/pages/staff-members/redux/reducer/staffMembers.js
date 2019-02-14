@@ -5,10 +5,8 @@ const initialStateStaffMembers  = {staffMembers: {staffMembers: [], staffTypes:[
 export const staffMembersReducer = handleActions(
   {
     [types.UPDATE_STAFF_MEMBERS]: (state, action) => {
-      //console.log("UPDATE_STAFF_MEMBERS", action);
-      const {payload: {staffMembers, staffTypes, venues}} = action
-      //console.log("UPDATE_STAFF_MEMBERS", {staffMembers, staffTypes, venues});
-      return {...state, staffMembers, staffTypes, venues};
+      const { payload: { staffMembers, staffTypes, venues } } = action
+      return { ...state, staffMembers, staffTypes, venues };
     }
 
   },

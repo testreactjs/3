@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import ContactDetails from './components/ContactDetails'
 import EmploymentDetails from './components/EmploymentDetails'
 import PersonalDetails from './components/PersonalDetails'
-class EditProfile extends React.Component {
+class StaffMemberEditProfile extends React.Component {
 
   render() {
     return (
@@ -33,4 +33,4 @@ class EditProfile extends React.Component {
     }
 }
 
-export default EditProfile
+export default StaffMemberEditProfile;

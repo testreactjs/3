@@ -1,19 +1,22 @@
 import * as types from './types'
 import { createAction } from 'redux-actions';
-import * as API from '../utils/api-service'
-import axios from 'axios'
-
+import * as API from '../../../utils/api-service'
+import instance from '../../../utils/http-service';
+import ApiService from '../../../utils/api-service';
 // api/v1/staff_members
 export const updateStaffMembersAction = createAction(types.UPDATE_STAFF_MEMBERS);
 
+
+
 export const fetchStaffMembersAction = () => {
   return (dispatch) => {
-    return axios.get(API.staffMembersUrlAPI, API.configAPI)
+    return instance.get(ApiService.staffMembersApiURL.getPath())
       .then(response => {
+        //console.log(response.data);
         dispatch(updateStaffMembersAction(response.data))
       })
       .catch(error => {
-        console.log("ERROR! axios.get fetchStaffMembersAction", error);
+        console.log("ERROR! ", error);
       });
   };
 };

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Form, Field } from 'react-final-form'
-import InputField from '../../../components/fields/InputField'
-import SelectField from '../../../components/fields/SelectField'
-import CalendarField from '../../../components/fields/CalendarField'
-import { genderOptions } from '../../../components/fields/form-options'
+import InputField from '../../../../components/fields/InputField'
+import SelectField from '../../../../components/fields/SelectField'
+import CalendarField from '../../../../components/fields/CalendarField'
+import { genderOptions } from '../../../../components/fields/form-options'
 
 
 
