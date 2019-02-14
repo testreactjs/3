@@ -1,46 +1,27 @@
 import React, { Component } from 'react'
-import { membersSelector } from '../../selectors'
-import { store } from '../../redux/store'
+import { getStaffMembers } from '../../selectors'
 import { connect } from 'react-redux'
 import * as actions from './redux/actions'
-import instance from '../../utils/http-service';
-import ApiService from '../../utils/api-service';
+
 
 export class StaffMembersList extends Component {
   state = {
     isFetching: true,
   }
 
-
-  async componentDidMount() {
-    //console.log("componentDidMount");
-    await instance.get(ApiService.staffMembersApiURL.getPath())
-      .then(response => {
-      //console.log(response.data);
-      store.dispatch(actions.updateStaffMembersAction(response.data))
-      this.setState({isFetching: false})
-    })
-    .catch(error => {
-      console.log("ERROR! ", error);
-    });
-
-
+  componentDidMount = async () => {
+    const { initialLoad } = this.props;
+    //console.log("this.props", this.props)
+    await initialLoad();
+    this.setState({ isFetching: false })
   }
-
-
-    /*
-    await somePromise (store.dispatch(actions.fetchStaffMembersAction())
-    .then(this.setState({ isFetching: false }))
-    .catch(error=>console.log(error)))
-    */
-
-
 
   render() {
     const { isFetching } = this.state;
     if (isFetching) {
       return null;
     }
+    //console.log("this.props", this.props)
     return (
       <div className="boss-table boss-table_page_staff-members-index">
         <div className="boss-table__row">
@@ -101,17 +82,21 @@ export class StaffMembersList extends Component {
             </div>
           </div>
         </div>
-
-
       </div>
     )
   }
 }
 
-const mapStateToProps = store => {
-  return { members: membersSelector(store), };
-
+const mapDispatchToProps = {
+  initialLoad: actions.initialLoadAction,
 }
+
+const mapStateToProps = store => {
+  //console.log(getStaffMembers);
+  return { staffMembers: getStaffMembers(store), };
+
+};
 export default connect(
   mapStateToProps,
+  mapDispatchToProps,
 )(StaffMembersList)

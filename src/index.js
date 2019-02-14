@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './assets/sass/index.sass';
-import { store } from './redux/store'
+import store from './redux/store'
 import { Provider } from 'react-redux'
 import App from './pages/index';
-
+import * as actions from './pages/staff-members/redux/actions'
 
 class Main extends React.Component {
   render() {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import StaffMemberEditProfile from '../pages/staff-member/staff-member-edit-profile/'
 import StaffMemberProfile from '../pages/staff-member/staff-member-profile'
-import {StaffMembersList} from '../pages/staff-members/'
+import StaffMembersList from '../pages/staff-members/'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class App extends Component {

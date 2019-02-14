@@ -4,3 +4,4 @@ import {staffMembersReducer} from '../../pages/staff-members/redux/reducer/staff
 export const rootReducer = combineReducers({
   staffMembers: staffMembersReducer,
 });
+

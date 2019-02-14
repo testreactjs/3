@@ -1,15 +1,13 @@
 import { handleActions } from 'redux-actions';
 import * as types from '../types';
-const initialStateStaffMembers  = {staffMembers: {staffMembers: [], staffTypes:[], venues: [] }};
+const initialStateStaffMembers = [];
 
 export const staffMembersReducer = handleActions(
   {
     [types.UPDATE_STAFF_MEMBERS]: (state, action) => {
-      const { payload: { staffMembers, staffTypes, venues } } = action
-      return { ...state, staffMembers, staffTypes, venues };
+      const { payload: { staffMembers } } = action
+      return staffMembers;
     }
-
-  },
-  initialStateStaffMembers);
+  }, initialStateStaffMembers);
 
 
