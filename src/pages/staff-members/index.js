@@ -21,7 +21,8 @@ export class StaffMembersList extends Component {
     if (isFetching) {
       return null;
     }
-    //console.log("this.props", this.props)
+
+    console.log("this.props", this.props)
     return (
       <div className="boss-table boss-table_page_staff-members-index">
         <div className="boss-table__row">
