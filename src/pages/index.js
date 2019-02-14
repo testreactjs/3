@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
+import {membersSelector} from '../selectors'
+import {store} from '../redux/store'
+import {connect} from 'react-redux'
 //import * as API from '../utils/api-service'
-export default class UsersList extends Component {
+
+export class UsersList extends Component {
 
   render() {
-
+    const data = mapStateToProps()
     return (
       <div className="boss-table boss-table_page_staff-members-index">
         <div className="boss-table__row">
@@ -70,3 +74,11 @@ export default class UsersList extends Component {
     )
   }
 }
+
+const mapStateToProps = store => {
+  return { members: membersSelector(store), };
+
+}
+export default connect(
+  mapStateToProps,
+)(UsersList)

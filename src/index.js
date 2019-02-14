@@ -7,9 +7,11 @@ import App from './App';
 import * as actions from './redux/actions'
 
 class Main extends React.Component {
-  render() {
-    //NOT GOOD!!!
+  componentWillMount() {
     store.dispatch(actions.fetchStaffMembersAction())
+  }
+  render() {
+
     return (
       <Provider store={store} >
         <App />
