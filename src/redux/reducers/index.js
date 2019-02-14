@@ -4,7 +4,7 @@ import {staffTypesReducer} from './staffTypes'
 import {venuesReducer} from './venues'
 export const rootReducer = combineReducers({
   staffMembersReducer: staffMembersReducer,
-  staffTypes: staffTypesReducer,
-  venues: venuesReducer
+  //staffTypes: staffTypesReducer,
+  //venues: venuesReducer
 
 });

@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
-import * as API from '../utils/api-service'
+//import * as API from '../utils/api-service'
 export default class UsersList extends Component {
-  constructor(props) {
-    super(props)
-    API.getAllMembers();
-  }
 
   render() {
 

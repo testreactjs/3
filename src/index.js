@@ -4,10 +4,12 @@ import './assets/sass/index.sass';
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
 import App from './App';
-
+import * as actions from './redux/actions'
 
 class Main extends React.Component {
   render() {
+    //NOT GOOD!!!
+    store.dispatch(actions.fetchStaffMembersAction())
     return (
       <Provider store={store} >
         <App />
