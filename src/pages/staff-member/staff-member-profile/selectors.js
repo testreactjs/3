@@ -20,6 +20,7 @@ export const getStaffMember = createSelector(
       staffType,
       staffTypeName: staffType ? staffType.name : 'N/A',
       venueName: venue ? venue.name: 'N/A',
+      isActive: staffMember.isDisabled ? 'Disabled': 'Active',
       //: staffType ? staffType.name : 'N/A',
       //staffTypeColor: staffType.color,
       //masterVenue: venue ?  venue.name : 'N/A',

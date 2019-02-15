@@ -5,7 +5,7 @@ import { getStaffMember } from './selectors'
 class StaffMemberProfile extends React.Component {
   state = {
     isFetching: true,
-}
+  }
 
     componentDidMount = async () => {
         const { initialLoadStaffMember, match: { params: { id } } } = this.props;
@@ -13,9 +13,57 @@ class StaffMemberProfile extends React.Component {
         await initialLoadStaffMember(id);
         this.setState({ isFetching: false })
     }
+
+    showTitle = () =>
+    {
+        const titlesText = ['Profile', 'Holidays', 'Owed hours', 'Accessories', 'Shifts', 'Payments'];
+        return titlesText.map((title, i) =>
+            (<a key={i} href="#" className="boss-button boss-button_type_small boss-button_role_profile boss-button_state_active boss-page-dashboard__switch">{title}</a>)
+        )
+    }
+    showDetailItem = (title, value) => {
+        return (
+            <li className="boss-details__item">
+                <p className="boss-details__label">{title}</p>
+                <p className="boss-details__value">{value}</p>
+            </li>
+        )
+    }
+    showDetailItemSmall = (title, value) => {
+        return (
+        <li className="boss-details__item">
+            <p className="boss-details__label boss-details__label_size_small">{title}</p>
+            <p className="boss-details__value">{value}</p>
+        </li>
+        )
+    }
+
     render() {
         console.log("StaffMemberProfile params", this.props)
-        const {avatarUrl, firstName, surname, email, staffTypeName, phoneNumber, venueName} = this.props.staffMember;
+        const {
+            avatarUrl,
+            firstName,
+            surname,
+            email,
+            staffTypeName,
+            phoneNumber,
+            venueName,
+            startsAt,
+            payRateId,
+            hoursPreferenceNote,
+            dayPreferenceNote,
+            nationalInsuranceNumber,
+            sageId,
+            statusStatement,
+            createdAt,
+            isActive,
+            hasUser,
+            passwordSetAt,
+            gender,
+            dateOfBirth,
+            country,
+            postcode
+        } = this.props.staffMember;
         const {match: { params: { id } } } = this.props;
         const { isFetching } = this.state;
         if (isFetching) {
@@ -61,12 +109,7 @@ class StaffMemberProfile extends React.Component {
                         </div>
 
                         <div className="boss-page-dashboard__switches">
-                            <a href="#" className="boss-button boss-button_type_small boss-button_role_profile boss-button_state_active boss-page-dashboard__switch">Profile</a>
-                            <a href="#" className="boss-button boss-button_type_small boss-button_role_holidays boss-page-dashboard__switch">Holidays</a>
-                            <a href="#" className="boss-button boss-button_type_small boss-button_role_timelog boss-page-dashboard__switch">Owed hours</a>
-                            <a href="#" className="boss-button boss-button_type_small boss-button_role_accessories boss-page-dashboard__switch">Accessories</a>
-                            <a href="#" className="boss-button boss-button_type_small boss-button_role_shifts boss-page-dashboard__switch">Shifts</a>
-                            <a href="#" className="boss-button boss-button_type_small boss-button_role_payments boss-page-dashboard__switch">Payments</a>
+                        {this.showTitle()}
                         </div>
                     </div>
                    </div>
@@ -80,46 +123,17 @@ class StaffMemberProfile extends React.Component {
                                 <div className="boss-details__content">
                                     <h3 className="boss-details__title">Employment Details</h3>
                                     <ul className="boss-details__list">
-                                        <li className="boss-details__item">
-                                            <p className="boss-details__label">Main Venue</p>
-                                            <p className="boss-details__value">McCoolay’s</p>
-                                        </li>
-                                        <li className="boss-details__item">
-                                            <p className="boss-details__label">Other Venues</p>
-                                            <p className="boss-details__value">N / A</p>
-                                        </li>
-                                        <li className="boss-details__item">
-                                            <p className="boss-details__label">Job Type</p>
-                                            <p className="boss-details__value">Floor Staff</p>
-                                        </li>
-                                        <li className="boss-details__item">
-                                            <p className="boss-details__label">Start Date</p>
-                                            <p className="boss-details__value">Tue 11/15/2016</p>
-                                        </li>
-                                        <li className="boss-details__item">
-                                            <p className="boss-details__label">Pay Rate</p>
-                                            <p className="boss-details__value">Age 18-20</p>
-                                        </li>
-                                        <li className="boss-details__item">
-                                            <p className="boss-details__label">Hour Preference</p>
-                                            <p className="boss-details__value">20 - 25</p>
-                                        </li>
-                                        <li className="boss-details__item">
-                                            <p className="boss-details__label">Day Preference</p>
-                                            <p className="boss-details__value">Thursday / Saturday / Sunday</p>
-                                        </li>
-                                        <li className="boss-details__item">
-                                            <p className="boss-details__label">National Insurance Number</p>
-                                            <p className="boss-details__value">PE630024B</p>
-                                        </li>
-                                        <li className="boss-details__item">
-                                            <p className="boss-details__label">Sage ID</p>
-                                            <p className="boss-details__value">260</p>
-                                        </li>
-                                        <li className="boss-details__item">
-                                            <p className="boss-details__label">Status Statement</p>
-                                            <p className="boss-details__value">A</p>
-                                        </li>
+
+                                        { this.showDetailItem("Main Venue", venueName) }
+                                        { this.showDetailItem("Other Venues", "!!!! LATER N / A") }
+                                        { this.showDetailItem("Job Type", staffTypeName) }
+                                        { this.showDetailItem("Start Date", startsAt) }
+                                        { this.showDetailItem("Pay Rate !!!", payRateId) }
+                                        { this.showDetailItem("Hour Preference", hoursPreferenceNote) }
+                                        { this.showDetailItem("Day Preference", dayPreferenceNote) }
+                                        { this.showDetailItem("National Insurance Number", nationalInsuranceNumber) }
+                                        { this.showDetailItem("Sage ID", sageId) }
+                                        { this.showDetailItem("Status Statement", statusStatement) }
                                     </ul>
                                 </div>
                             </section>
@@ -131,28 +145,14 @@ class StaffMemberProfile extends React.Component {
                                 <div className="boss-details__content">
                                     <h3 className="boss-details__title">Account Details</h3>
                                     <ul className="boss-details__list">
-                                        <li className="boss-details__item">
-                                            <p className="boss-details__label boss-details__label_size_small">Created</p>
-                                            <p className="boss-details__value">Mon 11/14/2016</p>
-                                        </li>
-                                        <li className="boss-details__item">
-                                            <p className="boss-details__label boss-details__label_size_small">Status</p>
-                                            <p className="boss-details__value">Active</p>
-                                        </li>
-                                        <li className="boss-details__item">
-                                            <p className="boss-details__label boss-details__label_size_small">User</p>
-                                            <p className="boss-details__value">No Associated User</p>
-                                        </li>
-                                        <li className="boss-details__item">
-                                            <p className="boss-details__label boss-details__label_size_small">Application Password</p>
-                                            <p className="boss-details__value">
-                                                <span className="boss-details__value-line">Set at 10:30 Mon 11/15/2016</span>
-                                            </p>
-                                        </li>
+                                        { this.showDetailItemSmall("Created", createdAt) }
+                                        { this.showDetailItemSmall("Status", isActive) }
+                                        { this.showDetailItemSmall("User", hasUser) }
+                                        { this.showDetailItemSmall("Application Password", passwordSetAt) }
                                         <li className="boss-details__item">
                                             <p className="boss-details__label boss-details__label_size_small">ID Scanner App Guid</p>
                                             <p className="boss-details__value">
-                                                <img src="images/hello-world_512.png" alt="qr code preview" className="boss-details__qr" />
+                                                <img src="http://boss-styles.herokuapp.com/images/hello-world_512.png" alt="qr code preview" className="boss-details__qr" />
                                             </p>
                                         </li>
                                     </ul>
@@ -169,15 +169,15 @@ class StaffMemberProfile extends React.Component {
                                     <ul className="boss-details__list">
                                         <li className="boss-details__item">
                                             <p className="boss-details__label">Name</p>
-                                            <p className="boss-details__value">Trulla Collier</p>
+                                            <p className="boss-details__value">{firstName} {surname}</p>
                                         </li>
                                         <li className="boss-details__item">
                                             <p className="boss-details__label">Gender</p>
-                                            <p className="boss-details__value">Female</p>
+                                            <p className="boss-details__value">{gender}</p>
                                         </li>
                                         <li className="boss-details__item">
                                             <p className="boss-details__label">Date of Birth</p>
-                                            <p className="boss-details__value">23 April 1999</p>
+                                            <p className="boss-details__value">{dateOfBirth}</p>
                                         </li>
                                     </ul>
                                 </div>
@@ -192,19 +192,19 @@ class StaffMemberProfile extends React.Component {
                                     <ul className="boss-details__list">
                                         <li className="boss-details__item">
                                             <p className="boss-details__label boss-details__label_size_small">Email Address</p>
-                                            <p className="boss-details__value">trulla.collier@yahoo.com</p>
+                                            <p className="boss-details__value">{email}</p>
                                         </li>
                                         <li className="boss-details__item">
                                             <p className="boss-details__label boss-details__label_size_small">Phone Number</p>
-                                            <p className="boss-details__value">+123 342 342</p>
+                                            <p className="boss-details__value">{phoneNumber}</p>
                                         </li>
                                         <li className="boss-details__item">
                                             <p className="boss-details__label boss-details__label_size_small">Address</p>
                                             <p className="boss-details__value">
-                                                <span className="boss-details__value-line">907 Charisse Junction</span>
-                                                <span className="boss-details__value-line">New Jersey</span>
-                                                <span className="boss-details__value-line">Monaco</span>
-                                                <span className="boss-details__value-line">42448</span>
+                                                <span className="boss-details__value-line">---</span>
+                                                <span className="boss-details__value-line">----</span>
+                                                <span className="boss-details__value-line">{country}</span>
+                                                <span className="boss-details__value-line">{postcode}</span>
                                             </p>
                                         </li>
                                     </ul>
@@ -234,7 +234,8 @@ class StaffMemberProfile extends React.Component {
                                                     <a href="#" className="boss-details__value-action">Send download email</a>
                                                 </span>
                                             </p>
-                                        </li><li className="boss-details__item">
+                                        </li>
+                                        <li className="boss-details__item">
                                             <p className="boss-details__label">Another App</p>
                                             <p className="boss-details__value">
                                                 <span className="boss-details__value-line">
