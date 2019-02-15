@@ -8,7 +8,7 @@ export default {
   },
   staffMember: {
     getPath(id) {
-      return `${BASE_URL}/api/v1/staff_members/${id}`
+      return `${BASE_URL}/api/v1/staff_member/${id}`
     }
   },
   staffMemberProfile: {

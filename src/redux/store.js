@@ -1,6 +1,8 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import { rootReducer } from '../pages/staff-members/redux/reducer';
+//import {rootReducer} from './reducer/index'
+import { rootReducerStaffMembers } from '../pages/staff-members/redux/reducer';
+//import { rootReducerStaffMember } from '../pages/staff-member/staff-member-profile/redux/reducer';
 
 const middleware = [thunk];
 const composeEnhancers =
@@ -14,6 +16,8 @@ const enhancer = composeEnhancers(
   applyMiddleware(...middleware),
   // other store enhancers if any
 );
-export default createStore(rootReducer, enhancer);
+
+
+export default createStore(rootReducerStaffMembers, enhancer);
 
 

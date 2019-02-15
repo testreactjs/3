@@ -3,7 +3,7 @@ import {staffMembersReducer} from './staffMembers'
 import {staffTypesReducer} from './staffTypes'
 import {venuesReducer} from './venues'
 
-export const rootReducer = combineReducers({
+export const rootReducerStaffMembers = combineReducers({
   staffMembers: staffMembersReducer,
   staffTypes: staffTypesReducer,
   venues: venuesReducer,
