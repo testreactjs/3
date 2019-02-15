@@ -11,3 +11,4 @@ class StaffMemberProfile extends React.Component {
     )
     }
 }
+export default StaffMemberProfile;

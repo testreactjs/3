@@ -20,7 +20,7 @@ class App extends Component {
               <Link to="/staff-members">StaffMembers</Link>
             </li>
           </ul>
-          <Route path="/staff-member/edit/:id" component={StaffMemberEditProfile}/>
+          <Route path="/staff-member/edit/:id" component={StaffMemberEditProfile} />
           <Route path="/staff-member/profile/:id" component={StaffMemberProfile} />
           <Route exact path="/staff-members" component={StaffMembersList} />
         </div>
