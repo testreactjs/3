@@ -7,7 +7,7 @@ import ApiService from '../../../utils/api-service';
 
 export const initialLoadStaffMembers = createAction(types.UPDATE_STAFF_MEMBERS);
 export const initialLoadStaffTypes = createAction(types.UPDATE_STAFF_TYPES);
-export const initialLoadvenues = createAction(types.UPDATE_VENUES);
+export const initialLoadVenues = createAction(types.UPDATE_VENUES);
 
 export const initialLoadAction = () => (dispatch) => {
   return http.get(ApiService.staffMembersApiURL.getPath())
@@ -15,6 +15,6 @@ export const initialLoadAction = () => (dispatch) => {
       console.log("initialLoadAction", response.data)
       dispatch(initialLoadStaffMembers(response.data))
       dispatch(initialLoadStaffTypes(response.data))
-      dispatch(initialLoadvenues(response.data))
+      dispatch(initialLoadVenues(response.data))
     })
 };

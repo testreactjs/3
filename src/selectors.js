@@ -8,20 +8,20 @@ const venuesDataSelector = data => data.venues;
 export const getStaffMembers = createSelector(
 
   [staffMembersSelector, staffTypesDataSelector, venuesDataSelector],
-  (staffMembers, staffTypes2, venues2) => {
-    return staffMembers;
-    /*
+  (staffMembers, staffTypes, venues) => {
+    //return staffMembers;
+
     return staffMembers.map(staffMember => {
-       //console.log(staffMember)
-       const { staffTypeId: staffId, masterVenueId: venueId } = staffMember;
-       //console.log(staffTypes2, venues2)
-       const staffTypeId = staffTypes2.find(value => value.id === staffId)
-       const masterVenueId = venues2.find(value => value.id === venueId)
+       //console.log(staffMembers, staffTypes, venues)
+       const { staffTypeId: idStaffTypes, masterVenueId: idVenue } = staffMember;
+       //console.log(idStaffTypes, idVenue)
+       const staffTypeId = staffTypes.find(value => value.id === idStaffTypes)
+       const venueId = venues.find(value => value.id === idVenue)
        //console.log(staffTypeId, masterVenueId)
        return {
-         ...staffMember, staffTypeId, masterVenueId
+         ...staffMember, staffTypeId, venueId
        }
     })
-    */
+
   }
 )
