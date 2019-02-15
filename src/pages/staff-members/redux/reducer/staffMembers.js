@@ -4,7 +4,7 @@ const initialStateStaffMembers = [];
 
 export const staffMembersReducer = handleActions(
   {
-    [types.UPDATE_STAFF_MEMBERS]: (state, action) => {
+    [types.INITIAL_LOAD]: (state, action) => {
       const { payload: { staffMembers } } = action
       return staffMembers;
     }

@@ -4,9 +4,8 @@ import http from '../../../utils/http-service';
 import ApiService from '../../../utils/api-service';
 
 
-export const initialLoadStaffMembers = createAction(types.UPDATE_STAFF_MEMBERS);
-export const initialLoadStaffTypes = createAction(types.UPDATE_STAFF_TYPES);
-export const initialLoadVenues = createAction(types.UPDATE_VENUES);
+export const initialLoadStaffMembers = createAction(types.INITIAL_LOAD);
+
 
 export const initialLoadAction = () => (dispatch) => {
   return http.get(ApiService.staffMembersApiURL.getPath())

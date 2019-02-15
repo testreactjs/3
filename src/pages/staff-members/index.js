@@ -30,7 +30,8 @@ export class StaffMembersList extends Component {
   }
 
   showStaffMember = (staffMember) => {
-    const {id, avatarUrl, firstName, surname, status, staffTypeId: {name: staffType}, venueId: {name: masterVenue}} = staffMember;
+
+    const {id, avatarUrl, firstName, surname, status, staffType, masterVenue} = staffMember;
     const url = `/staff-member/profile/${id}`
     return (
     <div key={id} className="boss-table__row">
@@ -85,18 +86,19 @@ export class StaffMembersList extends Component {
     )
   }
   render() {
+    //console.log("this.props", this.props)
     const { isFetching } = this.state;
     if (isFetching) {
       return null;
     }
     const { staffMembers } = this.props;
-
-    console.log("this.props", this.props)
     return (
+      <div className="boss-page-main__inner">
       <div className="boss-table boss-table_page_staff-members-index">
       {this.showHeaderHtml()}
       {staffMembers.map(staffMember => this.showStaffMember(staffMember))}
 
+      </div>
       </div>
     )
   }

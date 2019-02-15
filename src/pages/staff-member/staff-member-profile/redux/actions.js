@@ -4,7 +4,7 @@ import http from '../../../../utils/http-service';
 import ApiService from '../../../../utils/api-service';
 
 
-export const initialLoadStaffMember = createAction(types.UPDATE_STAFF_MEMBER);
+export const initialLoadStaffMember = createAction(types.INITIAL_LOAD_PROFILE);
 
 export const initialLoadActionStaffMember = (id) => (dispatch) => {
   //console.log("initialLoadActionStaffMember", id)
