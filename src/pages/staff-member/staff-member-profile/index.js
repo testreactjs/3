@@ -37,6 +37,18 @@ class StaffMemberProfile extends React.Component {
         </li>
         )
     }
+    showSendDownloadEmail = (title, value) => {
+        return (
+            <li className="boss-details__item">
+                <p className="boss-details__label">{title}</p>
+                <p className="boss-details__value">
+                    <span className="boss-details__value-line">
+                        <a href="#" className="boss-details__value-action">{value}</a>
+                    </span>
+                </p>
+            </li>
+        )
+    }
 
     render() {
         console.log("StaffMemberProfile params", this.props)
@@ -123,7 +135,6 @@ class StaffMemberProfile extends React.Component {
                                 <div className="boss-details__content">
                                     <h3 className="boss-details__title">Employment Details</h3>
                                     <ul className="boss-details__list">
-
                                         { this.showDetailItem("Main Venue", venueName) }
                                         { this.showDetailItem("Other Venues", "!!!! LATER N / A") }
                                         { this.showDetailItem("Job Type", staffTypeName) }
@@ -167,18 +178,9 @@ class StaffMemberProfile extends React.Component {
                                 <div className="boss-details__content">
                                     <h3 className="boss-details__title">Personal Details</h3>
                                     <ul className="boss-details__list">
-                                        <li className="boss-details__item">
-                                            <p className="boss-details__label">Name</p>
-                                            <p className="boss-details__value">{firstName} {surname}</p>
-                                        </li>
-                                        <li className="boss-details__item">
-                                            <p className="boss-details__label">Gender</p>
-                                            <p className="boss-details__value">{gender}</p>
-                                        </li>
-                                        <li className="boss-details__item">
-                                            <p className="boss-details__label">Date of Birth</p>
-                                            <p className="boss-details__value">{dateOfBirth}</p>
-                                        </li>
+                                        { this.showDetailItem("Name", `${firstName} ${surname}`) }
+                                        { this.showDetailItem("Gender", gender) }
+                                        { this.showDetailItem("Date of Birth", dateOfBirth) }
                                     </ul>
                                 </div>
                             </section>
@@ -190,14 +192,8 @@ class StaffMemberProfile extends React.Component {
                                 <div className="boss-details__content">
                                     <h3 className="boss-details__title">Contact Details</h3>
                                     <ul className="boss-details__list">
-                                        <li className="boss-details__item">
-                                            <p className="boss-details__label boss-details__label_size_small">Email Address</p>
-                                            <p className="boss-details__value">{email}</p>
-                                        </li>
-                                        <li className="boss-details__item">
-                                            <p className="boss-details__label boss-details__label_size_small">Phone Number</p>
-                                            <p className="boss-details__value">{phoneNumber}</p>
-                                        </li>
+                                        { this.showDetailItemSmall("Email Address", email) }
+                                        { this.showDetailItemSmall("Phone Number", phoneNumber) }
                                         <li className="boss-details__item">
                                             <p className="boss-details__label boss-details__label_size_small">Address</p>
                                             <p className="boss-details__value">
@@ -227,22 +223,8 @@ class StaffMemberProfile extends React.Component {
                                                 <span className="boss-details__value-line">Last sent at 10:30 Mon 11/15/2016</span>
                                             </p>
                                         </li>
-                                        <li className="boss-details__item">
-                                            <p className="boss-details__label">Other App</p>
-                                            <p className="boss-details__value">
-                                                <span className="boss-details__value-line">
-                                                    <a href="#" className="boss-details__value-action">Send download email</a>
-                                                </span>
-                                            </p>
-                                        </li>
-                                        <li className="boss-details__item">
-                                            <p className="boss-details__label">Another App</p>
-                                            <p className="boss-details__value">
-                                                <span className="boss-details__value-line">
-                                                    <a href="#" className="boss-details__value-action">Send download email</a>
-                                                </span>
-                                            </p>
-                                        </li>
+                                        { this.showSendDownloadEmail("Other App", "Send download email") }
+                                        { this.showSendDownloadEmail("Another App", "Send download email") }
 
                                     </ul>
                                 </div>
