@@ -11,18 +11,18 @@ class App extends Component {
         <div>
           <ul>
             <li>
-              <Link to="/edit">EditProfile</Link>
+              <Link to="/staff-member/edit/">EditProfile</Link>
             </li>
             <li>
-              <Link to="/profile">UserProfile</Link>
+              <Link to="/staff-member/profile/">UserProfile</Link>
             </li>
             <li>
-              <Link to="/">StaffMembers</Link>
+              <Link to="/staff-members">StaffMembers</Link>
             </li>
           </ul>
-          <Route exact path="/edit" component={StaffMemberEditProfile} />
-          <Route path="/profile" component={StaffMemberProfile} />
-          <Route path="/" component={StaffMembersList} />
+          <Route path="/staff-member/edit/:id" component={StaffMemberEditProfile}/>
+          <Route path="/staff-member/profile/:id" component={StaffMemberProfile} />
+          <Route exact path="/staff-members" component={StaffMembersList} />
         </div>
       </Router>
     );

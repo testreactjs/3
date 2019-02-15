@@ -4,8 +4,11 @@ import './assets/sass/index.sass';
 import store from './redux/store'
 import { Provider } from 'react-redux'
 import App from './pages/index';
-import * as actions from './pages/staff-members/redux/actions'
+
+
 const unsubscribe = store.subscribe(() => console.log('Change store', store.getState()));
+//delete!
+unsubscribe();
 class Main extends React.Component {
   render() {
     return (

@@ -15,17 +15,9 @@ export class StaffMembersList extends Component {
     await initialLoad();
     this.setState({ isFetching: false })
   }
-
-  render() {
-    const { isFetching } = this.state;
-    if (isFetching) {
-      return null;
-    }
-
-    console.log("this.props", this.props)
+  showHeaderHtml = () => {
     return (
-      <div className="boss-table boss-table_page_staff-members-index">
-        <div className="boss-table__row">
+    <div className="boss-table__row">
           <div className="boss-table__cell boss-table__cell_role_header"></div>
           <div className="boss-table__cell boss-table__cell_role_header">Name</div>
           <div className="boss-table__cell boss-table__cell_role_header">Modified</div>
@@ -34,12 +26,19 @@ export class StaffMembersList extends Component {
           <div className="boss-table__cell boss-table__cell_role_header">Master Venue</div>
           <div className="boss-table__cell boss-table__cell_role_header">Work Venues</div>
         </div>
-        <div className="boss-table__row">
+    )
+  }
+
+  showStaffMember = (staffMember) => {
+    const {id, avatarUrl, firstName, surname, status, staffTypeId: {name: staffType}, venueId: {name: masterVenue}} = staffMember;
+    const url = `/staff-member/profile/${id}`
+    return (
+    <div key={id} className="boss-table__row">
           <div className="boss-table__cell">
             <div className="boss-table__image">
               <a href="#" className="boss-table__link">
                 <div className="boss-avatar boss-avatar_type_combined">
-                  <img src="images/avatars/download.jpeg" className="boss-avatar__image" />
+                  <img src={avatarUrl} className="boss-avatar__image" />
                 </div>
               </a>
             </div>
@@ -47,42 +46,57 @@ export class StaffMembersList extends Component {
           <div className="boss-table__cell">
             <div className="boss-table__info">
               <p className="boss-table__label">Name</p>
-              <p className="boss-table__text"><a href="#" className="boss-table__link">John Doe</a></p>
+              <p className="boss-table__text"><a href={url} className="boss-table__link">{firstName} {surname}</a></p>
             </div>
           </div>
           <div className="boss-table__cell">
             <div className="boss-table__info">
               <p className="boss-table__label">Modified</p>
-              <p className="boss-table__text"><a href="#" className="boss-table__link">18:00 Wed 11/16/2016</a></p>
+              <p className="boss-table__text"><a href={url} className="boss-table__link"> -- </a></p>
             </div>
           </div>
-          <div className="boss-table__cell">
+          <div key={id} className="boss-table__cell">
             <div className="boss-table__info">
               <p className="boss-table__label">Status</p>
               <p className="boss-table__text">
-                <button className="boss-button boss-button_type_small boss-button_role_enabled boss-button_type_no-behavior">Enabled</button>
+                <button className="boss-button boss-button_type_small boss-button_role_enabled boss-button_type_no-behavior">{status}</button>
               </p>
             </div>
           </div>
           <div className="boss-table__cell">
             <div className="boss-table__info">
               <p className="boss-table__label">Type</p>
-              <p className="boss-table__text"><a href="#" className="boss-table__link">Manager</a></p>
+              <p className="boss-table__text"><a href={url} className="boss-table__link">{staffType}</a></p>
             </div>
           </div>
           <div className="boss-table__cell">
             <div className="boss-table__info">
               <p className="boss-table__label">Master Venue</p>
-              <p className="boss-table__text"><a href="#" className="boss-table__link">Black</a></p>
+              <p className="boss-table__text"><a href={url} className="boss-table__link">{masterVenue}</a></p>
             </div>
           </div>
           <div className="boss-table__cell">
             <div className="boss-table__info">
               <p className="boss-table__label">Work Venues</p>
-              <p className="boss-table__text"><a href="#" className="boss-table__link">Mint Green, McCooley's</a></p>
+              <p className="boss-table__text"><a href={url} className="boss-table__link">  -- </a></p>
             </div>
           </div>
         </div>
+    )
+  }
+  render() {
+    const { isFetching } = this.state;
+    if (isFetching) {
+      return null;
+    }
+    const { staffMembers } = this.props;
+
+    console.log("this.props", this.props)
+    return (
+      <div className="boss-table boss-table_page_staff-members-index">
+      {this.showHeaderHtml()}
+      {staffMembers.map(staffMember => this.showStaffMember(staffMember))}
+
       </div>
     )
   }

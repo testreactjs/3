@@ -1,6 +1,5 @@
 import * as types from './types'
 import { createAction } from 'redux-actions';
-import * as API from '../../../utils/api-service'
 import http from '../../../utils/http-service';
 import ApiService from '../../../utils/api-service';
 

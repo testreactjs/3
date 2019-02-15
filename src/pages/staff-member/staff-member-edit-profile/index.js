@@ -6,6 +6,10 @@ import PersonalDetails from './components/PersonalDetails'
 class StaffMemberEditProfile extends React.Component {
 
   render() {
+    console.log("StaffMemberEditProfile params url id", this.props.match.params.id)
+    console.log("StaffMemberEditProfile params url id", this.props.match)
+    const {url} = this.props.match;
+    console.log()
     return (
       <Router>
         <div className="boss-page-main__content">
@@ -14,14 +18,14 @@ class StaffMemberEditProfile extends React.Component {
               <div className="boss-content-switcher__inner">
                 <aside className="boss-content-switcher__side">
                   <nav className="boss-content-switcher__nav">
-                    <NavLink className="boss-content-switcher__nav-link" activeClassName="boss-content-switcher__nav-link_state_active" to="/employment-details">Employment Details</NavLink>
-                    <NavLink className="boss-content-switcher__nav-link" activeClassName="boss-content-switcher__nav-link_state_active" to="/personal-details">Personal Details</NavLink>
-                    <NavLink className="boss-content-switcher__nav-link" activeClassName="boss-content-switcher__nav-link_state_active" to="/contact-details">Contact Details</NavLink>
+                    <NavLink className="boss-content-switcher__nav-link" activeClassName="boss-content-switcher__nav-link_state_active" to={`${url}/employment-details`}>Employment Details</NavLink>
+                    <NavLink className="boss-content-switcher__nav-link" activeClassName="boss-content-switcher__nav-link_state_active" to={`${url}/personal-details`}>Personal Details</NavLink>
+                    <NavLink className="boss-content-switcher__nav-link" activeClassName="boss-content-switcher__nav-link_state_active" to={`${url}/contact-details`}>Contact Details</NavLink>
                   </nav>
                 </aside>
-                <Route path="/employment-details" component={EmploymentDetails} />
-                <Route path="/personal-details" component={PersonalDetails} />
-                <Route path="/contact-details" component={ContactDetails} />
+                <Route path={`${url}/employment-details`} component={EmploymentDetails} />
+                <Route path={`${url}/personal-details`} component={PersonalDetails} />
+                <Route path={`${url}/contact-details`} component={ContactDetails} />
               </div>
             </div>
           </div>
