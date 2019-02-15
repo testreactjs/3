@@ -11,9 +11,6 @@ export const initialLoadVenues = createAction(types.UPDATE_VENUES);
 export const initialLoadAction = () => (dispatch) => {
   return http.get(ApiService.staffMembersApiURL.getPath())
     .then(response => {
-      console.log("initialLoadAction", response.data)
       dispatch(initialLoadStaffMembers(response.data))
-      dispatch(initialLoadStaffTypes(response.data))
-      dispatch(initialLoadVenues(response.data))
     })
 };

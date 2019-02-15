@@ -6,7 +6,7 @@ const initialStateVenues = [];
 
 export const venuesReducer = handleActions(
   {
-    [types.UPDATE_VENUES]: (state, action) => {
+    [types.UPDATE_STAFF_MEMBERS]: (state, action) => {
       const { payload: { venues } } = action
       return venues;
     }

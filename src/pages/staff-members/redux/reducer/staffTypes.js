@@ -6,8 +6,7 @@ const initialStateStaffTypes = [];
 
 export const staffTypesReducer = handleActions(
   {
-    [types.UPDATE_STAFF_TYPES]: (state, action) => {
-      //console.log("UPDATE_STAFF_TYPES")
+    [types.UPDATE_STAFF_MEMBERS]: (state, action) => {
       const { payload: { staffTypes } } = action
       return staffTypes;
     }

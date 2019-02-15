@@ -10,16 +10,4 @@ export const staffMembersReducer = handleActions(
     }
   }, initialStateStaffMembers);
 
-/*
-export const staffMembersReducer = handleActions(
-  {
-    [types.UPDATE_STAFF_MEMBERS]: (state, action) => {
-      const lol = action
-      console.log("UPDATE_STAFF_MEMBERS", lol)
-      const { payload: { staffMembers } } = action
-      return staffMembers;
-    }
-  }, initialStateStaffMembers);
 
-
-*/
