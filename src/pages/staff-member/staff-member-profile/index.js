@@ -3,6 +3,77 @@ import { connect } from 'react-redux';
 import * as actions from './redux/actions';
 import { getStaffMember } from './selectors';
 
+const DetailsList = ({ title, pointerText, children }) => {
+  return (
+    <div className="boss-page-main__isle">
+      <section className="boss-details">
+        <p className="boss-details__pointer">
+          <span className="boss-details__pointer-text">{pointerText}</span>
+        </p>
+        <div className="boss-details__content">
+          <h3 className="boss-details__title">{title}</h3>
+          <ul className="boss-details__list">{children}</ul>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+const DetailsListItem = ({ title, value, small }) => {
+  return (
+    <li className="boss-details__item">
+      <p className={`boss-details__label ${small === 'true' ? 'boss-details__label_size_small' : ''}`}>{title}</p>
+      <p className="boss-details__value">{value}</p>
+    </li>
+  );
+};
+
+const DetailsListItemButton = ({ title }) => {
+  return (
+    <li className="boss-details__item">
+      <button className="boss-button boss-button_role_view-history boss-button_type_small">{title}</button>
+    </li>
+  );
+};
+const DetailsListItemMobile = ({ title, value, hrefValue, secondSpan = '' }) => {
+  return (
+    <li className="boss-details__item">
+      <p className="boss-details__label">{title}</p>
+      <p className="boss-details__value">
+        <span className="boss-details__value-line">
+          <a href={hrefValue} className="boss-details__value-action">
+            {value}
+          </a>
+        </span>
+        {secondSpan !== '' ? <span className="boss-details__value-line">{secondSpan}</span> : ''}
+      </p>
+    </li>
+  );
+};
+const DetailsListItemImg = ({ title, value, imgUrl }) => {
+  return (
+    <li key={title} className="boss-details__item">
+      <p className="boss-details__label">{title}</p>
+      <p className="boss-details__value">
+        <img className="boss-details__qr" src={imgUrl} alt={value} />
+      </p>
+    </li>
+  );
+};
+
+const DetailsListItemSpans = ({ title, country, postcode }) => {
+  return (
+    <li className="boss-details__item">
+      <p className="boss-details__label boss-details__label_size_small">{title}</p>
+      <p className="boss-details__value">
+        <span className="boss-details__value-line">---</span>
+        <span className="boss-details__value-line">----</span>
+        <span className="boss-details__value-line">{country}</span>
+        <span className="boss-details__value-line">{postcode}</span>
+      </p>
+    </li>
+  );
+};
 class StaffMemberProfile extends React.Component {
   state = {
     isFetching: true,
@@ -190,129 +261,53 @@ class StaffMemberProfile extends React.Component {
         <div className="boss-page-main__content">
           <div className="boss-page-main__inner">
             <div className="boss-page-main__flow">
-              {this.showDetail('Employment Details', '1', [
-                this.showDetailItem('Main Venue', venueName),
-                this.showDetailItem('Other Venues', '!!!! LATER N / A'),
-                this.showDetailItem('Job Type', staffTypeName),
-                this.showDetailItem('Start Date', startsAt),
-                this.showDetailItem('Pay Rate !!!', payRateId),
-                this.showDetailItem('Hour Preference', hoursPreferenceNote),
-                this.showDetailItem('Day Preference', dayPreferenceNote),
-                this.showDetailItem('National Insurance Number', nationalInsuranceNumber),
-                this.showDetailItem('Sage ID', sageId),
-                this.showDetailItem('Status Statement', statusStatement),
-              ])}
-
-              <div className="boss-page-main__isle">
-                <section className="boss-details">
-                  <p className="boss-details__pointer">
-                    <span className="boss-details__pointer-text">2</span>
-                  </p>
-                  <div className="boss-details__content">
-                    <h3 className="boss-details__title">Account Details</h3>
-                    <ul className="boss-details__list">
-                      {this.showDetailItemSmall('Created', createdAt)}
-                      {this.showDetailItemSmall('Status', isActive)}
-                      {this.showDetailItemSmall('User', hasUser)}
-                      {this.showDetailItemSmall('Application Password', passwordSetAt)}
-                      <li className="boss-details__item">
-                        <p className="boss-details__label boss-details__label_size_small">ID Scanner App Guid</p>
-                        <p className="boss-details__value">
-                          <img
-                            src="http://boss-styles.herokuapp.com/images/hello-world_512.png"
-                            alt="qr code preview"
-                            className="boss-details__qr"
-                          />
-                        </p>
-                      </li>
-                    </ul>
-                  </div>
-                </section>
-              </div>
-
-              <div className="boss-page-main__isle">
-                <section className="boss-details">
-                  <p className="boss-details__pointer">
-                    <span className="boss-details__pointer-text">3</span>
-                  </p>
-                  <div className="boss-details__content">
-                    <h3 className="boss-details__title">Personal Details</h3>
-                    <ul className="boss-details__list">
-                      {this.showDetailItem('Name', `${firstName} ${surname}`)}
-                      {this.showDetailItem('Gender', gender)}
-                      {this.showDetailItem('Date of Birth', dateOfBirth)}
-                    </ul>
-                  </div>
-                </section>
-              </div>
-
-              <div className="boss-page-main__isle">
-                <section className="boss-details">
-                  <p className="boss-details__pointer">
-                    <span className="boss-details__pointer-text">4</span>
-                  </p>
-                  <div className="boss-details__content">
-                    <h3 className="boss-details__title">Contact Details</h3>
-                    <ul className="boss-details__list">
-                      {this.showDetailItemSmall('Email Address', email)}
-                      {this.showDetailItemSmall('Phone Number', phoneNumber)}
-                      <li className="boss-details__item">
-                        <p className="boss-details__label boss-details__label_size_small">Address</p>
-                        <p className="boss-details__value">
-                          <span className="boss-details__value-line">---</span>
-                          <span className="boss-details__value-line">----</span>
-                          <span className="boss-details__value-line">{country}</span>
-                          <span className="boss-details__value-line">{postcode}</span>
-                        </p>
-                      </li>
-                    </ul>
-                  </div>
-                </section>
-              </div>
-
-              <div className="boss-page-main__isle">
-                <section className="boss-details">
-                  <p className="boss-details__pointer">
-                    <span className="boss-details__pointer-text">5</span>
-                  </p>
-                  <div className="boss-details__content">
-                    <h3 className="boss-details__title">Mobile Apps</h3>
-                    <ul className="boss-details__list">
-                      <li className="boss-details__item">
-                        <p className="boss-details__label">Some App</p>
-                        <p className="boss-details__value">
-                          <span className="boss-details__value-line">
-                            <a href="#" className="boss-details__value-action">
-                              Send download email
-                            </a>
-                          </span>
-                          <span className="boss-details__value-line">Last sent at 10:30 Mon 11/15/2016</span>
-                        </p>
-                      </li>
-                      {this.showSendDownloadEmail('Other App', 'Send download email')}
-                      {this.showSendDownloadEmail('Another App', 'Send download email')}
-                    </ul>
-                  </div>
-                </section>
-              </div>
-
-              <div className="boss-page-main__isle">
-                <section className="boss-details">
-                  <p className="boss-details__pointer">
-                    <span className="boss-details__pointer-text">6</span>
-                  </p>
-                  <div className="boss-details__content">
-                    <h3 className="boss-details__title">Revisions History</h3>
-                    <ul className="boss-details__list">
-                      <li className="boss-details__item">
-                        <button className="boss-button boss-button_role_view-history boss-button_type_small">
-                          View History
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
-                </section>
-              </div>
+              <DetailsList title="Employment Details" pointerText="1">
+                <DetailsListItem title="Main Venue" value={venueName} />
+                <DetailsListItem title="Other Venues" value="!!!! LATER N / A" />
+                <DetailsListItem title="Job Type" value={staffTypeName} />
+                <DetailsListItem title="Start Date" value={startsAt} />
+                <DetailsListItem title="Pay Rate !!!" value={payRateId} />
+                <DetailsListItem title="Hour Preference" value={hoursPreferenceNote} />
+                <DetailsListItem title="Day Preference" value={dayPreferenceNote} />
+                <DetailsListItem title="National Insurance Number" value={nationalInsuranceNumber} />
+                <DetailsListItem title="Sage ID" value={sageId} />
+                <DetailsListItem title="Status Statement" value={statusStatement} />
+              </DetailsList>
+              <DetailsList title="Account Details" pointerText="2">
+                <DetailsListItem title="Created" value={createdAt} />
+                <DetailsListItem title="Status" value={isActive} />
+                <DetailsListItem title="User" value={hasUser} />
+                <DetailsListItem title="Application Password" value={passwordSetAt} />
+                <DetailsListItemImg
+                  title="ID Scanner App Guid"
+                  value="qr code preview"
+                  imgUrl="http://boss-styles.herokuapp.com/images/hello-world_512.png"
+                />
+              </DetailsList>
+              <DetailsList title="Personal Details" pointerText="3">
+                <DetailsListItem title="Name" value={`${firstName} ${surname}`} />
+                <DetailsListItem title="Gender" value={gender} />
+                <DetailsListItem title="Date of Birth" value={dateOfBirth} />
+              </DetailsList>
+              <DetailsList title="Contact Details" pointerText="4">
+                <DetailsListItem title="Email Address" value={email} small="true" />
+                <DetailsListItem title="Phone Number" value={phoneNumber} small="true" />
+                <DetailsListItem title="Date of Birth" value={dateOfBirth} small="true" />
+                <DetailsListItemSpans title="Address" country={country} postcode={postcode} />
+              </DetailsList>
+              <DetailsList title="Mobile Apps" pointerText="5">
+                <DetailsListItemMobile
+                  title="Some App"
+                  value="Send download email"
+                  hrefValue="#"
+                  secondSpan="Last sent at 10:30 Mon 11/15/2016"
+                />
+                <DetailsListItemMobile title="Other App" value="Send download email" hrefValue="#" />
+                <DetailsListItemMobile title="Another Ap" value="Send download email" hrefValue="#" />
+              </DetailsList>
+              <DetailsList title="Revisions History" pointerText="6">
+                <DetailsListItemButton title="View History" />
+              </DetailsList>
             </div>
           </div>
         </div>
