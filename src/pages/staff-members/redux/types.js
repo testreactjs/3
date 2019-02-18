@@ -8,7 +8,4 @@ export const API_DATA_ERROR = 'API_DATA_ERROR';
 
 */
 
-
 export const INITIAL_LOAD = 'INITIAL_LOAD';
-
-

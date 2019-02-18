@@ -4,5 +4,5 @@ import { rootReducerStaffMember } from '../../pages/staff-member/staff-member-pr
 
 export const rootReducer = combineReducers({
   staffMembersPage: rootReducerStaffMembers,
-  staffMemberPage: rootReducerStaffMember
+  staffMemberPage: rootReducerStaffMember,
 });

@@ -1,24 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './assets/sass/index.sass';
-import store from './redux/store'
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
+import store from './redux/store';
 import App from './pages/index';
 
-
 const unsubscribe = store.subscribe(() => console.log('Change store', store.getState()));
-//delete!
+// delete!
 unsubscribe();
 class Main extends React.Component {
   render() {
     return (
-      <Provider store={store} >
+      <Provider store={store}>
         <App />
       </Provider>
-    )
+    );
   }
 }
-
 
 ReactDOM.render(<Main />, document.getElementById('root'));
 

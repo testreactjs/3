@@ -1,18 +1,22 @@
-import React from 'react'
+import React from 'react';
 
 export const requiredDefault = value => {
-  return value ? undefined : (
+  return value ? (
+    undefined
+  ) : (
     <div className="boss-form__error">
       <p className="boss-form__error-text">
         <span className="boss-form__error-line">This is a required field!</span>
       </p>
     </div>
   );
-}
+};
 
 export const requiredEmail = value => {
   const re = /\S+@\S+\.\S+/;
-  return (value && re.test(String(value).toLowerCase())) ? undefined : (
+  return value && re.test(String(value).toLowerCase()) ? (
+    undefined
+  ) : (
     <div className="boss-form__error">
       <p className="boss-form__error-text">
         <span className="boss-form__error-line">This is a required field!</span>
@@ -20,5 +24,4 @@ export const requiredEmail = value => {
       </p>
     </div>
   );
-}
-
+};
