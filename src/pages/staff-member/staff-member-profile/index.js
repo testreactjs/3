@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import * as actions from './redux/actions';
 import { getStaffMember } from './selectors';
 
@@ -97,7 +98,7 @@ class StaffMemberProfile extends React.Component {
       <a
         key={i}
         href="#"
-        className="boss-button boss-button_type_small boss-button_role_profile boss-button_state_active boss-page-dashboard__switch"
+        className="boss-button boss-button_type_small boss-button_role_holidays boss-page-dashboard__switch"
       >
         {title}
       </a>
@@ -167,6 +168,7 @@ class StaffMemberProfile extends React.Component {
       staffTypeName,
       phoneNumber,
       venueName,
+      otherVenues,
       startsAt,
       payRate,
       hoursPreferenceNote,
@@ -263,10 +265,10 @@ class StaffMemberProfile extends React.Component {
             <div className="boss-page-main__flow">
               <DetailsList title="Employment Details" pointerText="1">
                 <DetailsListItem title="Main Venue" value={venueName} />
-                <DetailsListItem title="Other Venues" value="!!!! LATER N / A" />
+                <DetailsListItem title="Other Venues" value={otherVenues} />
                 <DetailsListItem title="Job Type" value={staffTypeName} />
                 <DetailsListItem title="Start Date" value={startsAt} />
-                <DetailsListItem title="Pay Rate !!!" value={payRate} />
+                <DetailsListItem title="Pay Rate" value={payRate} />
                 <DetailsListItem title="Hour Preference" value={hoursPreferenceNote} />
                 <DetailsListItem title="Day Preference" value={dayPreferenceNote} />
                 <DetailsListItem title="National Insurance Number" value={nationalInsuranceNumber} />
@@ -274,10 +276,13 @@ class StaffMemberProfile extends React.Component {
                 <DetailsListItem title="Status Statement" value={statusStatement} />
               </DetailsList>
               <DetailsList title="Account Details" pointerText="2">
-                <DetailsListItem title="Created" value={createdAt} />
+                <DetailsListItem title="Created" value={moment(createdAt).format('DD-MM-YYYY HH:mm:ss')} />
                 <DetailsListItem title="Status" value={isActive} />
                 <DetailsListItem title="User" value={hasUser} />
-                <DetailsListItem title="Application Password" value={passwordSetAt} />
+                <DetailsListItem
+                  title="Application Password"
+                  value={moment(passwordSetAt).format('DD-MM-YYYY HH:mm:ss')}
+                />
                 <DetailsListItemImg
                   title="ID Scanner App Guid"
                   value="qr code preview"

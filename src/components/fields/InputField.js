@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class InputField extends Component {
   render() {
     // console.log("InputField", this.props)
-    const { input, label, note, meta, required } = this.props;
+    const { input, label, note, meta, required, data } = this.props;
 
     return (
       <div className="boss-form__field">
@@ -13,7 +13,12 @@ export default class InputField extends Component {
               {label} {required ? '*' : ''}
             </span>
           )}
-          <input type="text" className="boss-form__input" onChange={event => input.onChange(event.target.value)} />
+          <input
+            type="text"
+            className="boss-form__input"
+            onChange={event => input.onChange(event.target.value)}
+            defaultValue={data}
+          />
         </label>
         {note && <p className="boss-form__field-note">{note}</p>}
         {meta.error && meta.touched && <span>{meta.error}</span>}

@@ -11,14 +11,16 @@ class PersonalDetailsForm extends React.Component {
   };
 
   render() {
+    console.log('PersonalDetailsForm this.props.data', this.props.data);
+    const { firstName, surname, gender } = this.props.data;
     return (
       <Form
         onSubmit={this.onSubmit}
         render={({ handleSubmit, form, values }) => (
           <form onSubmit={handleSubmit} className="boss-form boss-form_page_profile-edit">
-            <Field name="firstName" component={InputField} label="First Name" required />
-            <Field name="surname" component={InputField} label="Surname" required />
-            <Field name="gender" component={SelectField} options={genderOptions} label="Gender" />
+            <Field name="firstName" component={InputField} label="First Name" data={firstName} required />
+            <Field name="surname" component={InputField} label="Surname" data={surname} required />
+            <Field name="gender" component={SelectField} options={genderOptions} data={gender} label="Gender" />
             <Field name="dateOfBirth" component={CalendarField} label="Date of birth" />
             <div className="boss-form__field boss-form__field_justify_end">
               <button className="boss-button boss-form__submit boss-form__submit_adjust_single" type="submit">

@@ -7,6 +7,8 @@ class PersonalDetails extends React.Component {
   };
 
   render() {
+    const { data } = this.props;
+    console.log('PersonalDetails this.props', this.props);
     return (
       <section className="boss-content-switcher__chapters">
         <article
@@ -17,7 +19,7 @@ class PersonalDetails extends React.Component {
             <h2 className="boss-content-switcher__title">Personal Details</h2>
           </header>
           <div className="boss-content-switcher__content">
-            <PersonalDetailsForm />
+            <PersonalDetailsForm data={data} />
           </div>
         </article>
       </section>

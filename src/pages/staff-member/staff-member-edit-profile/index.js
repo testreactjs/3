@@ -5,7 +5,7 @@ import ContactDetails from './components/ContactDetails';
 import EmploymentDetails from './components/EmploymentDetails';
 import PersonalDetails from './components/PersonalDetails';
 import * as actions from './redux/actions';
-import { getStaffMember } from './selectors';
+import { getEditProfile } from './selectors';
 
 class StaffMemberEditProfile extends React.Component {
   state = {
@@ -29,8 +29,13 @@ class StaffMemberEditProfile extends React.Component {
     if (isFetching) {
       return null;
     }
-    console.log('StaffMemberEditProfile params url id', this.props);
-    const { url } = this.props.match;
+    console.log('StaffMemberEditProfile this.props', this.props);
+    const {
+      match: { url },
+      staffMemberEditPage,
+    } = this.props;
+    const { firstName, surname, dateOfBirth, gender } = staffMemberEditPage;
+    console.log(firstName, surname, dateOfBirth);
     return (
       <Router>
         <div className="boss-page-main__content">
@@ -62,9 +67,18 @@ class StaffMemberEditProfile extends React.Component {
                     </NavLink>
                   </nav>
                 </aside>
-                <Route path={`${url}/employment-details`} component={EmploymentDetails} data />
-                <Route path={`${url}/personal-details`} component={PersonalDetails} />
-                <Route path={`${url}/contact-details`} component={ContactDetails} />
+
+                <Route
+                  exact
+                  path={`${url}/employment-details`}
+                  component={EmploymentDetails}
+                  data={staffMemberEditPage}
+                />
+                <Route
+                  path={`${url}/personal-details`}
+                  render={() => <PersonalDetails data={{ firstName, surname, dateOfBirth, gender }} />}
+                />
+                <Route path={`${url}/contact-details`} component={ContactDetails} data={staffMemberEditPage} />
               </div>
             </div>
           </div>
@@ -78,7 +92,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = store => {
-  return { staffMember: getStaffMember(store) };
+  return { staffMemberEditPage: getEditProfile(store) };
   // return store;
 };
 

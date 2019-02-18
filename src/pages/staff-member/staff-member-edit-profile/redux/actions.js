@@ -8,7 +8,7 @@ export const initialLoadEditProfile = createAction(types.INITIAL_LOAD_EDIT_PROFI
 export const initialLoadActionEditProfile = id => dispatch => {
   // console.log('initialLoadActionEmploymentDetails', id);
   return http.get(ApiService.staffMember.getPath(id)).then(response => {
-    console.log('initialLoadActionEmploymentDetails', response.data);
+    // console.log('initialLoadActionEmploymentDetails', response.data);
     dispatch(initialLoadEditProfile(response.data));
   });
 };
