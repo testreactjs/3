@@ -168,7 +168,7 @@ class StaffMemberProfile extends React.Component {
       phoneNumber,
       venueName,
       startsAt,
-      payRateId,
+      payRate,
       hoursPreferenceNote,
       dayPreferenceNote,
       nationalInsuranceNumber,
@@ -266,7 +266,7 @@ class StaffMemberProfile extends React.Component {
                 <DetailsListItem title="Other Venues" value="!!!! LATER N / A" />
                 <DetailsListItem title="Job Type" value={staffTypeName} />
                 <DetailsListItem title="Start Date" value={startsAt} />
-                <DetailsListItem title="Pay Rate !!!" value={payRateId} />
+                <DetailsListItem title="Pay Rate !!!" value={payRate} />
                 <DetailsListItem title="Hour Preference" value={hoursPreferenceNote} />
                 <DetailsListItem title="Day Preference" value={dayPreferenceNote} />
                 <DetailsListItem title="National Insurance Number" value={nationalInsuranceNumber} />
