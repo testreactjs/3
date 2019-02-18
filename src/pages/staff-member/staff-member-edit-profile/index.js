@@ -6,7 +6,7 @@ import PersonalDetails from './components/PersonalDetails';
 
 class StaffMemberEditProfile extends React.Component {
   render() {
-    console.log('StaffMemberEditProfile params url id', this.props.match.params.id);
+    console.log('StaffMemberEditProfile params url id', this.props);
     const { url } = this.props.match;
     return (
       <Router>
