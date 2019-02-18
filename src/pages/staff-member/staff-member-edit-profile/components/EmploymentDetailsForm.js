@@ -13,36 +13,40 @@ class EmploymentDetails extends React.Component {
 
   render() {
     console.log('this.props EmploymentDetails', this.props);
+    const { masterVenueId, otherVenueIds, staffTypeId, dateOfBirth, payRateId, dayPreferenceNote, hoursPreferenceNote, nationalInsuranceNumber, sageId, statusStatement } = this.props.data;
     const optionsSelect = [{ value: '1', label: 'Options 1' }, { value: '2', label: 'Options 2' }];
     return (
       <Form
         onSubmit={this.onSubmit}
         render={({ handleSubmit, form, values }) => (
           <form onSubmit={handleSubmit} className="boss-form boss-form_page_profile-edit">
-            <Field name="mainVenue" component={InputField} label="Main Venue" validate={requiredDefault} />
-            <Field name="otherVenues" component={InputField} label="Other Venues" />
-            <Field name="staffType" component={SelectField} options={optionsSelect} label="Staff Type*" required />
-            <Field name="dateOfBirth" component={CalendarField} label="Date of birth*" />
-            <Field name="payRate" component={InputField} label="Pay rate" required />
+            <Field name="mainVenue" component={InputField} label="Main Venue" validate={requiredDefault} data={masterVenueId} />
+            <Field name="otherVenues" component={InputField} label="Other Venues" data={otherVenueIds}/>
+            <Field name="staffType" component={SelectField} options={optionsSelect} label="Staff Type*" required data={staffTypeId} />
+            <Field name="dateOfBirth" component={CalendarField} label="Date of birth*" data={dateOfBirth} />
+            <Field name="payRate" component={InputField} label="Pay rate" data={payRateId} required />
             <Field
               name="dayPreference"
               component={InputField}
+              data={dayPreferenceNote}
               label="Day Preference"
               note="Preferred days to work displayed to the rota (e.g mornings and weekends)"
             />
             <Field
               name="hoursPreference"
               component={InputField}
+              data={hoursPreferenceNote}
               label="Hours Preference"
               note="Preferred number of hours to work per week displayed in the rota (e.g 40,20+)"
             />
-            <Field name="nationalInsuranceNumber" component={InputField} label="National Insurance Number" />
-            <Field name="sageId" component={InputField} label="Sage ID" />
+            <Field name="nationalInsuranceNumber" component={InputField} label="National Insurance Number" data={nationalInsuranceNumber}/>
+            <Field name="sageId" component={InputField} label="Sage ID" data={sageId} />
 
             <Field
               name="employmentStatus"
               component={ChoiceListField}
               title="Starter Employement Status Statement"
+              data={statusStatement}
               note="Tick one that applies"
             />
             <div className="boss-form__field boss-form__field_justify_end">

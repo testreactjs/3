@@ -1,11 +1,16 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ContactDetails from './components/ContactDetails';
 import EmploymentDetails from './components/EmploymentDetails';
 import PersonalDetails from './components/PersonalDetails';
 import * as actions from './redux/actions';
 import { getEditProfile } from './selectors';
+
+
+const NoMatch = () => (
+  <p>No Match</p>
+);
 
 class StaffMemberEditProfile extends React.Component {
   state = {
@@ -34,8 +39,15 @@ class StaffMemberEditProfile extends React.Component {
       match: { url },
       staffMemberEditPage,
     } = this.props;
+    //Personal Details
     const { firstName, surname, dateOfBirth, gender } = staffMemberEditPage;
-    console.log(firstName, surname, dateOfBirth);
+
+    //Contact Details
+    const { email, phoneNumber, address, postcode, country, county } = staffMemberEditPage;
+
+    //Employment Details
+    const { masterVenueId, otherVenueIds, staffTypeId, /*dateOfBirth,*/ payRateId, dayPreferenceNote, hoursPreferenceNote, nationalInsuranceNumber, sageId, statusStatement } = staffMemberEditPage;
+
     return (
       <Router>
         <div className="boss-page-main__content">
@@ -67,18 +79,23 @@ class StaffMemberEditProfile extends React.Component {
                     </NavLink>
                   </nav>
                 </aside>
+                <Switch>
 
                 <Route
                   exact
                   path={`${url}/employment-details`}
-                  component={EmploymentDetails}
-                  data={staffMemberEditPage}
+                  render={() => <EmploymentDetails data={{ masterVenueId, otherVenueIds, staffTypeId, dateOfBirth, payRateId, dayPreferenceNote, hoursPreferenceNote, nationalInsuranceNumber, sageId, statusStatement }} />}
                 />
                 <Route
                   path={`${url}/personal-details`}
                   render={() => <PersonalDetails data={{ firstName, surname, dateOfBirth, gender }} />}
                 />
-                <Route path={`${url}/contact-details`} component={ContactDetails} data={staffMemberEditPage} />
+                <Route
+                  path={`${url}/contact-details`}
+                  render={() => <ContactDetails data={{ email, phoneNumber, address, postcode, country, county }}  /> } />
+                <Route exact path={`${url}`} render={() => (<Redirect to={`${url}/employment-details`} />)} />
+
+                </Switch>
               </div>
             </div>
           </div>

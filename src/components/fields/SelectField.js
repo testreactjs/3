@@ -3,7 +3,7 @@ import Select from 'react-select';
 
 export default class SelectField extends Component {
   state = {
-    selectedOption: '',
+    selectedOption: this.props.data,
   };
 
   handleChange = selectedOption => {
