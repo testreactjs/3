@@ -12,7 +12,7 @@ class ContactDetails extends React.Component {
     return (
       <Form
         onSubmit={this.onSubmit}
-        render={({ handleSubmit, form, submitting, pristine, values }) => (
+        render={({ handleSubmit, form, submitting, values }) => (
           <form onSubmit={handleSubmit} className="boss-form boss-form_page_profile-edit">
             <Field name="email" component={InputField} label="Email" validate={requiredEmail} />
             <Field name="phoneNumber" component={InputField} label="Phone number" />
@@ -25,7 +25,7 @@ class ContactDetails extends React.Component {
                 type="submit"
                 className="boss-button boss-form__submit boss-form__submit_adjust_single"
                 disabled={submitting}
-                onClick={values => this.onSubmit(values)}
+                onClick={value => this.onSubmit(value)}
               >
                 Save
               </button>

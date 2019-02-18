@@ -14,7 +14,7 @@ class PersonalDetailsForm extends React.Component {
     return (
       <Form
         onSubmit={this.onSubmit}
-        render={({ handleSubmit, form, submitting, pristine, values }) => (
+        render={({ handleSubmit, form, values }) => (
           <form onSubmit={handleSubmit} className="boss-form boss-form_page_profile-edit">
             <Field name="firstName" component={InputField} label="First Name" required />
             <Field name="surname" component={InputField} label="Surname" required />

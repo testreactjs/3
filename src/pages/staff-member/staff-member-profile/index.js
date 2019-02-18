@@ -1,8 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import * as actions from './redux/actions'
-import { getStaffMember } from './selectors'
-;
+import { connect } from 'react-redux';
+import * as actions from './redux/actions';
+import { getStaffMember } from './selectors';
+
 class StaffMemberProfile extends React.Component {
   state = {
     isFetching: true,
@@ -67,7 +67,6 @@ class StaffMemberProfile extends React.Component {
   };
 
   render() {
-    console.log('StaffMemberProfile params', this.props);
     const {
       avatarUrl,
       firstName,
@@ -112,7 +111,7 @@ class StaffMemberProfile extends React.Component {
                     <div className="boss-user-summary__side">
                       <div className="boss-user-summary__avatar">
                         <div className="boss-user-summary__avatar-inner">
-                          <img src={avatarUrl} alt={`${firstName} ${surname}`} className="boss-user-summary__pic" />>
+                          <img src={avatarUrl} alt={`${firstName} ${surname}`} className="boss-user-summary__pic" />
                         </div>
                         <a
                           href={`/staff-member/edit/${id}`}
@@ -319,7 +318,7 @@ const mapDispatchToProps = {
 };
 const mapStateToProps = store => {
   return { staffMember: getStaffMember(store) };
-  //return store;
+  // return store;
 };
 
 export default connect(

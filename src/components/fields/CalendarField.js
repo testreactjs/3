@@ -1,22 +1,22 @@
-import React, { Component } from 'react'
-import DatePicker from "react-datepicker";
-import moment from 'moment'
-import "react-datepicker/dist/react-datepicker.css";
+import React, { Component } from 'react';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
 
 export default class CalendarField extends Component {
   constructor(props) {
     super(props);
-    this.state = { startDate: new Date() }
+    this.state = { startDate: new Date() };
   }
 
-  handleChange = (date) => {
+  handleChange = date => {
     this.setState({
-      startDate: date
+      startDate: date,
     });
     const { input } = this.props;
     const formattedDate = moment(date).format('DD-MM-YYYY');
     input.onChange(formattedDate);
-  }
+  };
 
   render() {
     const { label, meta } = this.props;
@@ -35,6 +35,6 @@ export default class CalendarField extends Component {
         </label>
         {meta.error && meta.touched && <span>{meta.error}</span>}
       </div>
-    )
+    );
   }
 }

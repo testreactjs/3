@@ -16,7 +16,7 @@ class EmploymentDetails extends React.Component {
     return (
       <Form
         onSubmit={this.onSubmit}
-        render={({ handleSubmit, form, submitting, pristine, values }) => (
+        render={({ handleSubmit, form, values }) => (
           <form onSubmit={handleSubmit} className="boss-form boss-form_page_profile-edit">
             <Field name="mainVenue" component={InputField} label="Main Venue" validate={requiredDefault} />
             <Field name="otherVenues" component={InputField} label="Other Venues" />

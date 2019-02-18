@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getStaffMembers } from '../../selectors';
 import * as actions from './redux/actions';
 
-export class StaffMembersList extends Component {
+class StaffMembersList extends Component {
   state = {
     isFetching: true,
   };
@@ -135,6 +135,7 @@ const mapStateToProps = store => {
   // console.log(getStaffMembers);
   return { staffMembers: getStaffMembers(store) };
 };
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
