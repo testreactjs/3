@@ -1,11 +1,10 @@
 import { combineReducers } from 'redux';
-import { employmentDetailsReducer } from './employmentDetails';
-/*
+import { staffMemberReducer } from './staffMember';
 import { staffTypesReducer } from './staffTypes';
 import { venuesReducer } from './venues';
-*/
+
 export const rootReducerStaffMember = combineReducers({
-  staffMember: employmentDetailsReducer,
-  // staffTypes: staffTypesReducer,
-  // venues: venuesReducer,
+  staffMember: staffMemberReducer,
+  staffTypes: staffTypesReducer,
+  venues: venuesReducer,
 });

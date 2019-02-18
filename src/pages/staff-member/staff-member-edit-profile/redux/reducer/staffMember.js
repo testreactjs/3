@@ -1,17 +1,17 @@
 import { handleActions } from 'redux-actions';
 import * as types from '../types';
 
-const initialStateEditEmploymentDetails = [];
+const initialStateStaffMember = [];
 
-export const employmentDetailsReducer = handleActions(
+export const staffMemberReducer = handleActions(
   {
     [types.INITIAL_LOAD_EDIT_PROFILE]: (state, action) => {
       console.log('INITIAL_LOAD_EDIT_PROFILE', action);
       const {
-        payload: { employmentDetails },
+        payload: { staffMember },
       } = action;
-      return employmentDetails;
+      return staffMember;
     },
   },
-  initialStateEditEmploymentDetails,
+  initialStateStaffMember,
 );

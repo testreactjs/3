@@ -35,7 +35,7 @@ class StaffMemberProfile extends React.Component {
 
   showDetailItem = (title, value) => {
     return (
-      <li className="boss-details__item">
+      <li key={title} className="boss-details__item">
         <p className="boss-details__label">{title}</p>
         <p className="boss-details__value">{value}</p>
       </li>
@@ -66,7 +66,28 @@ class StaffMemberProfile extends React.Component {
     );
   };
 
+  showDetail = (title, pointerText, innerText) => {
+    return (
+      <div className="boss-page-main__isle">
+        <section className="boss-details">
+          <p className="boss-details__pointer">
+            <span className="boss-details__pointer-text">{pointerText}</span>
+          </p>
+          <div className="boss-details__content">
+            <h3 className="boss-details__title">{title}</h3>
+            <ul className="boss-details__list">{innerText}</ul>
+          </div>
+        </section>
+      </div>
+    );
+  };
+
   render() {
+    const { isFetching } = this.state;
+    if (isFetching) {
+      return null;
+    }
+
     const {
       avatarUrl,
       firstName,
@@ -96,10 +117,7 @@ class StaffMemberProfile extends React.Component {
         params: { id },
       },
     } = this.props;
-    const { isFetching } = this.state;
-    if (isFetching) {
-      return null;
-    }
+
     return (
       <section>
         <div className="boss-page-main__dashboard">
@@ -172,28 +190,18 @@ class StaffMemberProfile extends React.Component {
         <div className="boss-page-main__content">
           <div className="boss-page-main__inner">
             <div className="boss-page-main__flow">
-              <div className="boss-page-main__isle">
-                <section className="boss-details">
-                  <p className="boss-details__pointer">
-                    <span className="boss-details__pointer-text">1</span>
-                  </p>
-                  <div className="boss-details__content">
-                    <h3 className="boss-details__title">Employment Details</h3>
-                    <ul className="boss-details__list">
-                      {this.showDetailItem('Main Venue', venueName)}
-                      {this.showDetailItem('Other Venues', '!!!! LATER N / A')}
-                      {this.showDetailItem('Job Type', staffTypeName)}
-                      {this.showDetailItem('Start Date', startsAt)}
-                      {this.showDetailItem('Pay Rate !!!', payRateId)}
-                      {this.showDetailItem('Hour Preference', hoursPreferenceNote)}
-                      {this.showDetailItem('Day Preference', dayPreferenceNote)}
-                      {this.showDetailItem('National Insurance Number', nationalInsuranceNumber)}
-                      {this.showDetailItem('Sage ID', sageId)}
-                      {this.showDetailItem('Status Statement', statusStatement)}
-                    </ul>
-                  </div>
-                </section>
-              </div>
+              {this.showDetail('Employment Details', '1', [
+                this.showDetailItem('Main Venue', venueName),
+                this.showDetailItem('Other Venues', '!!!! LATER N / A'),
+                this.showDetailItem('Job Type', staffTypeName),
+                this.showDetailItem('Start Date', startsAt),
+                this.showDetailItem('Pay Rate !!!', payRateId),
+                this.showDetailItem('Hour Preference', hoursPreferenceNote),
+                this.showDetailItem('Day Preference', dayPreferenceNote),
+                this.showDetailItem('National Insurance Number', nationalInsuranceNumber),
+                this.showDetailItem('Sage ID', sageId),
+                this.showDetailItem('Status Statement', statusStatement),
+              ])}
 
               <div className="boss-page-main__isle">
                 <section className="boss-details">

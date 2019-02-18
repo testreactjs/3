@@ -1,11 +1,34 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 import ContactDetails from './components/ContactDetails';
 import EmploymentDetails from './components/EmploymentDetails';
 import PersonalDetails from './components/PersonalDetails';
+import * as actions from './redux/actions';
+import { getStaffMember } from './selectors';
 
 class StaffMemberEditProfile extends React.Component {
+  state = {
+    isFetching: true,
+  };
+
+  componentDidMount = async () => {
+    const {
+      initialLoadEditProfile,
+      match: {
+        params: { id },
+      },
+    } = this.props;
+
+    await initialLoadEditProfile(id);
+    this.setState({ isFetching: false });
+  };
+
   render() {
+    const { isFetching } = this.state;
+    if (isFetching) {
+      return null;
+    }
     console.log('StaffMemberEditProfile params url id', this.props);
     const { url } = this.props.match;
     return (
@@ -39,7 +62,7 @@ class StaffMemberEditProfile extends React.Component {
                     </NavLink>
                   </nav>
                 </aside>
-                <Route path={`${url}/employment-details`} component={EmploymentDetails} />
+                <Route path={`${url}/employment-details`} component={EmploymentDetails} data />
                 <Route path={`${url}/personal-details`} component={PersonalDetails} />
                 <Route path={`${url}/contact-details`} component={ContactDetails} />
               </div>
@@ -50,5 +73,16 @@ class StaffMemberEditProfile extends React.Component {
     );
   }
 }
+const mapDispatchToProps = {
+  initialLoadEditProfile: actions.initialLoadActionEditProfile,
+};
 
-export default StaffMemberEditProfile;
+const mapStateToProps = store => {
+  return { staffMember: getStaffMember(store) };
+  // return store;
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(StaffMemberEditProfile);
