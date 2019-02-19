@@ -54,3 +54,10 @@ export const getGenderValues = createSelector(
     return [...genderValues];
   },
 );
+
+export const getPayRates = createSelector(
+  [payRatesDataSelector],
+  payRates => {
+    return [...payRates];
+  },
+);

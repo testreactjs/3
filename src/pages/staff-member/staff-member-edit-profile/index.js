@@ -5,7 +5,7 @@ import ContactDetails from './components/ContactDetails';
 import EmploymentDetails from './components/EmploymentDetails';
 import PersonalDetails from './components/PersonalDetails';
 import * as actions from './redux/actions';
-import { getEditProfile, getStaffTypes, getVenues, getGenderValues } from './selectors';
+import { getEditProfile, getStaffTypes, getVenues, getGenderValues, getPayRates } from './selectors';
 
 class StaffMemberEditProfile extends React.Component {
   state = {
@@ -24,8 +24,16 @@ class StaffMemberEditProfile extends React.Component {
     this.setState({ isFetching: false });
   };
 
-  handlerChangeStaffMember = values => {
-    console.log('handlerChangeStaffMember', values);
+  handlerChangeEmploymentDetails = values => {
+    console.log('handlerChangeEmploymentDetails', values);
+  };
+
+  handlerChangePersonalDetails = values => {
+    console.log('handlerChangePersonalDetails', values);
+  };
+
+  handlerChangeContactDetails = values => {
+    console.log('handlerChangeContactDetails', values);
   };
 
   render() {
@@ -39,6 +47,7 @@ class StaffMemberEditProfile extends React.Component {
       staffMemberEditPage,
       staffTypes,
       genderValues,
+      payRates,
     } = this.props;
     // Personal Details
     const { firstName, surname, dateOfBirth, gender } = staffMemberEditPage;
@@ -108,8 +117,9 @@ class StaffMemberEditProfile extends React.Component {
                           sageId,
                           statusStatement,
                           staffTypes,
+                          payRates,
                         }}
-                        onChange={this.handlerChangeStaffMember}
+                        onChange={this.handlerChangeEmploymentDetails}
                       />
                     )}
                   />
@@ -118,7 +128,7 @@ class StaffMemberEditProfile extends React.Component {
                     render={() => (
                       <PersonalDetails
                         data={{ firstName, surname, dateOfBirth, gender, genderValues }}
-                        onChange={this.handlerChangeStaffMember}
+                        onChange={this.handlerChangePersonalDetails}
                       />
                     )}
                   />
@@ -127,7 +137,7 @@ class StaffMemberEditProfile extends React.Component {
                     render={() => (
                       <ContactDetails
                         data={{ email, phoneNumber, address, postcode, country, county }}
-                        onChange={this.handlerChangeStaffMember}
+                        onChange={this.handlerChangeContactDetails}
                       />
                     )}
                   />
@@ -151,6 +161,7 @@ const mapStateToProps = store => {
     staffTypes: getStaffTypes(store),
     venues: getVenues(store),
     genderValues: getGenderValues(store),
+    payRates: getPayRates(store),
   };
 
   // return store;

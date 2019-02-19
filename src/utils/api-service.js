@@ -11,9 +11,19 @@ export default {
       return `${BASE_URL}/api/v1/staff_members/${id}`;
     },
   },
-  staffMemberProfile: {
+  updateEmploymentDetails: {
     getPath(id) {
-      return `${BASE_URL}/api/v1/staff_members/${id}/profile`;
+      return `${BASE_URL}/api/v1/staff_members/${id}/update_employment_details`;
+    },
+  },
+  updatePersonalDetails: {
+    getPath(id) {
+      return `${BASE_URL}/api/v1/staff_members/${id}/update_personal_details`;
+    },
+  },
+  updateContactDetails: {
+    getPath(id) {
+      return `${BASE_URL}/api/v1/staff_members/${id}/update_contact_details`;
     },
   },
 };

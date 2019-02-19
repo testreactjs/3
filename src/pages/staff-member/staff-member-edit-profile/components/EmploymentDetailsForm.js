@@ -27,13 +27,16 @@ class EmploymentDetails extends React.Component {
       sageId,
       statusStatement,
       staffTypes,
+      payRates,
     } = this.props.data;
 
     // const optionsSelect = [{ value: '1', label: 'Options 1' }, { value: '2', label: 'Options 2' }];
-    const optionsSelect = staffTypes.map(value => {
+    const optionsSelectStaffTypes = staffTypes.map(value => {
       return { value: value.id, label: value.name };
     });
-
+    const optionSelectPayRates = payRates.map(value => {
+      return { value: value.id, label: value.name };
+    });
     return (
       <Form
         onSubmit={this.onSubmit}
@@ -50,13 +53,20 @@ class EmploymentDetails extends React.Component {
             <Field
               name="staffType"
               component={SelectField}
-              options={optionsSelect}
+              options={optionsSelectStaffTypes}
               label="Staff Type*"
               required
               data={staffTypeId}
             />
             <Field name="dateOfBirth" component={CalendarField} label="Date of birth*" data={dateOfBirth} />
-            <Field name="payRate" component={InputField} label="Pay rate" data={payRateId} required />
+            <Field
+              name="payRate"
+              options={optionSelectPayRates}
+              component={SelectField}
+              label="Pay rate"
+              data={payRateId}
+              required
+            />
             <Field
               name="dayPreference"
               component={InputField}
