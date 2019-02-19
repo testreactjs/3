@@ -34,3 +34,9 @@ export const getEditProfile = createSelector(
     };
   },
 );
+export const getStaffTypes = createSelector(
+  [staffTypesDataSelector],
+  staffTypes => {
+    return [...staffTypes];
+  },
+);

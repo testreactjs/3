@@ -5,12 +5,7 @@ import ContactDetails from './components/ContactDetails';
 import EmploymentDetails from './components/EmploymentDetails';
 import PersonalDetails from './components/PersonalDetails';
 import * as actions from './redux/actions';
-import { getEditProfile } from './selectors';
-
-
-const NoMatch = () => (
-  <p>No Match</p>
-);
+import { getEditProfile, getStaffTypes } from './selectors';
 
 class StaffMemberEditProfile extends React.Component {
   state = {
@@ -38,15 +33,26 @@ class StaffMemberEditProfile extends React.Component {
     const {
       match: { url },
       staffMemberEditPage,
+      staffTypes,
     } = this.props;
-    //Personal Details
+    // Personal Details
     const { firstName, surname, dateOfBirth, gender } = staffMemberEditPage;
 
-    //Contact Details
+    // Contact Details
     const { email, phoneNumber, address, postcode, country, county } = staffMemberEditPage;
 
-    //Employment Details
-    const { masterVenueId, otherVenueIds, staffTypeId, /*dateOfBirth,*/ payRateId, dayPreferenceNote, hoursPreferenceNote, nationalInsuranceNumber, sageId, statusStatement } = staffMemberEditPage;
+    // Employment Details
+    const {
+      masterVenueId,
+      otherVenueIds,
+      staffTypeId,
+      /* dateOfBirth, */ payRateId,
+      dayPreferenceNote,
+      hoursPreferenceNote,
+      nationalInsuranceNumber,
+      sageId,
+      statusStatement,
+    } = staffMemberEditPage;
 
     return (
       <Router>
@@ -80,21 +86,36 @@ class StaffMemberEditProfile extends React.Component {
                   </nav>
                 </aside>
                 <Switch>
-
-                <Route
-                  exact
-                  path={`${url}/employment-details`}
-                  render={() => <EmploymentDetails data={{ masterVenueId, otherVenueIds, staffTypeId, dateOfBirth, payRateId, dayPreferenceNote, hoursPreferenceNote, nationalInsuranceNumber, sageId, statusStatement }} />}
-                />
-                <Route
-                  path={`${url}/personal-details`}
-                  render={() => <PersonalDetails data={{ firstName, surname, dateOfBirth, gender }} />}
-                />
-                <Route
-                  path={`${url}/contact-details`}
-                  render={() => <ContactDetails data={{ email, phoneNumber, address, postcode, country, county }}  /> } />
-                <Route exact path={`${url}`} render={() => (<Redirect to={`${url}/employment-details`} />)} />
-
+                  <Route
+                    exact
+                    path={`${url}/employment-details`}
+                    render={() => (
+                      <EmploymentDetails
+                        data={{
+                          masterVenueId,
+                          otherVenueIds,
+                          staffTypeId,
+                          dateOfBirth,
+                          payRateId,
+                          dayPreferenceNote,
+                          hoursPreferenceNote,
+                          nationalInsuranceNumber,
+                          sageId,
+                          statusStatement,
+                          staffTypes,
+                        }}
+                      />
+                    )}
+                  />
+                  <Route
+                    path={`${url}/personal-details`}
+                    render={() => <PersonalDetails data={{ firstName, surname, dateOfBirth, gender }} />}
+                  />
+                  <Route
+                    path={`${url}/contact-details`}
+                    render={() => <ContactDetails data={{ email, phoneNumber, address, postcode, country, county }} />}
+                  />
+                  <Route exact path={`${url}`} render={() => <Redirect to={`${url}/employment-details`} />} />
                 </Switch>
               </div>
             </div>
@@ -109,7 +130,8 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = store => {
-  return { staffMemberEditPage: getEditProfile(store) };
+  return { staffMemberEditPage: getEditProfile(store), staffTypes: getStaffTypes(store) };
+
   // return store;
 };
 

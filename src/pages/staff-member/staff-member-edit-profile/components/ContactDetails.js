@@ -7,7 +7,7 @@ class ContactDetails extends React.Component {
   };
 
   render() {
-    const {data} = this.props;
+    const { data } = this.props;
     return (
       <section className="boss-content-switcher__chapters">
         <article

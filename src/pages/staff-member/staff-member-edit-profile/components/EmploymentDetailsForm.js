@@ -13,16 +13,46 @@ class EmploymentDetails extends React.Component {
 
   render() {
     console.log('this.props EmploymentDetails', this.props);
-    const { masterVenueId, otherVenueIds, staffTypeId, dateOfBirth, payRateId, dayPreferenceNote, hoursPreferenceNote, nationalInsuranceNumber, sageId, statusStatement } = this.props.data;
-    const optionsSelect = [{ value: '1', label: 'Options 1' }, { value: '2', label: 'Options 2' }];
+    const {
+      masterVenueId,
+      otherVenueIds,
+      staffTypeId,
+      dateOfBirth,
+      payRateId,
+      dayPreferenceNote,
+      hoursPreferenceNote,
+      nationalInsuranceNumber,
+      sageId,
+      statusStatement,
+      staffTypes,
+    } = this.props.data;
+
+    // const optionsSelect = [{ value: '1', label: 'Options 1' }, { value: '2', label: 'Options 2' }];
+    const optionsSelect = staffTypes.map(value => {
+      return { value: value.id, label: value.name };
+    });
+
     return (
       <Form
         onSubmit={this.onSubmit}
         render={({ handleSubmit, form, values }) => (
           <form onSubmit={handleSubmit} className="boss-form boss-form_page_profile-edit">
-            <Field name="mainVenue" component={InputField} label="Main Venue" validate={requiredDefault} data={masterVenueId} />
-            <Field name="otherVenues" component={InputField} label="Other Venues" data={otherVenueIds}/>
-            <Field name="staffType" component={SelectField} options={optionsSelect} label="Staff Type*" required data={staffTypeId} />
+            <Field
+              name="mainVenue"
+              component={InputField}
+              label="Main Venue"
+              validate={requiredDefault}
+              data={masterVenueId}
+            />
+            <Field name="otherVenues" component={InputField} label="Other Venues" data={otherVenueIds} />
+            <Field
+              name="staffType"
+              component={SelectField}
+              options={optionsSelect}
+              label="Staff Type*"
+              required
+              data={staffTypeId}
+            />
             <Field name="dateOfBirth" component={CalendarField} label="Date of birth*" data={dateOfBirth} />
             <Field name="payRate" component={InputField} label="Pay rate" data={payRateId} required />
             <Field
@@ -39,7 +69,12 @@ class EmploymentDetails extends React.Component {
               label="Hours Preference"
               note="Preferred number of hours to work per week displayed in the rota (e.g 40,20+)"
             />
-            <Field name="nationalInsuranceNumber" component={InputField} label="National Insurance Number" data={nationalInsuranceNumber}/>
+            <Field
+              name="nationalInsuranceNumber"
+              component={InputField}
+              label="National Insurance Number"
+              data={nationalInsuranceNumber}
+            />
             <Field name="sageId" component={InputField} label="Sage ID" data={sageId} />
 
             <Field

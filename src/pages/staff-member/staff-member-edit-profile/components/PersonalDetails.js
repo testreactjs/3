@@ -2,7 +2,6 @@ import React from 'react';
 import PersonalDetailsForm from './PersonalDetailsForm';
 
 class PersonalDetails extends React.Component {
-
   onSubmit = () => {
     console.log('onSubmit.PersonalDetails');
   };

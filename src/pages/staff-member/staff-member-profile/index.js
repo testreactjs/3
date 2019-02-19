@@ -62,13 +62,13 @@ const DetailsListItemImg = ({ title, value, imgUrl }) => {
   );
 };
 
-const DetailsListItemSpans = ({ title, country, postcode }) => {
+const DetailsListItemSpans = ({ title, country, postcode, address, county }) => {
   return (
     <li className="boss-details__item">
       <p className="boss-details__label boss-details__label_size_small">{title}</p>
       <p className="boss-details__value">
-        <span className="boss-details__value-line">---</span>
-        <span className="boss-details__value-line">----</span>
+        <span className="boss-details__value-line">{address}</span>
+        <span className="boss-details__value-line">{county}</span>
         <span className="boss-details__value-line">{country}</span>
         <span className="boss-details__value-line">{postcode}</span>
       </p>
@@ -183,6 +183,8 @@ class StaffMemberProfile extends React.Component {
       gender,
       dateOfBirth,
       country,
+      county,
+      address,
       postcode,
     } = this.props.staffMember;
     const {
@@ -298,7 +300,13 @@ class StaffMemberProfile extends React.Component {
                 <DetailsListItem title="Email Address" value={email} small="true" />
                 <DetailsListItem title="Phone Number" value={phoneNumber} small="true" />
                 <DetailsListItem title="Date of Birth" value={dateOfBirth} small="true" />
-                <DetailsListItemSpans title="Address" country={country} postcode={postcode} />
+                <DetailsListItemSpans
+                  title="Address"
+                  address={address}
+                  county={county}
+                  country={country}
+                  postcode={postcode}
+                />
               </DetailsList>
               <DetailsList title="Mobile Apps" pointerText="5">
                 <DetailsListItemMobile

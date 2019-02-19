@@ -14,8 +14,8 @@ class ChoiceListField extends Component {
   renderList = () => {
     return Object.entries(employmentStatusOptions).map(entry => {
       const [key, value] = entry;
-      const { input } = this.props;
-      const isChecked = key === input.value;
+      const { input, data } = this.props;
+      const isChecked = key === (input.value ? input.value : data);
       return (
         <label key={key} className="boss-choice-list__radio-label">
           <input
