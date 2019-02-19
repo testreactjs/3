@@ -4,6 +4,7 @@ import InputField from '../../../../components/fields/InputField';
 import CalendarField from '../../../../components/fields/CalendarField';
 import ChoiceListField from '../../../../components/fields/ChoiceListField';
 import SelectField from '../../../../components/fields/SelectField';
+import MultiSelectField from '../../../../components/fields/MultiSelectField';
 import { requiredDefault } from '../../../../utils/validators';
 
 class EmploymentDetails extends React.Component {
@@ -28,6 +29,7 @@ class EmploymentDetails extends React.Component {
       statusStatement,
       staffTypes,
       payRates,
+      venues,
     } = this.props.data;
 
     // const optionsSelect = [{ value: '1', label: 'Options 1' }, { value: '2', label: 'Options 2' }];
@@ -35,6 +37,9 @@ class EmploymentDetails extends React.Component {
       return { value: value.id, label: value.name };
     });
     const optionSelectPayRates = payRates.map(value => {
+      return { value: value.id, label: value.name };
+    });
+    const optionSelectVenues = venues.map(value => {
       return { value: value.id, label: value.name };
     });
     return (
@@ -49,7 +54,13 @@ class EmploymentDetails extends React.Component {
               validate={requiredDefault}
               data={masterVenueId}
             />
-            <Field name="otherVenues" component={InputField} label="Other Venues" data={otherVenueIds} />
+            <Field
+              name="otherVenues"
+              component={MultiSelectField}
+              options={optionSelectVenues}
+              label="Other Venues"
+              data={otherVenueIds}
+            />
             <Field
               name="staffType"
               component={SelectField}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, NavLink, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+// import qs from 'qs';
 import ContactDetails from './components/ContactDetails';
 import EmploymentDetails from './components/EmploymentDetails';
 import PersonalDetails from './components/PersonalDetails';
@@ -30,6 +31,16 @@ class StaffMemberEditProfile extends React.Component {
 
   handlerChangePersonalDetails = values => {
     console.log('handlerChangePersonalDetails', values);
+    const {
+      changePersonalDetailsProfile,
+      match: {
+        params: { id },
+      },
+    } = this.props;
+    const cleanData = { gender: null, dateOfBirth: null, firstName: null, surname: null };
+    const sendData = { ...cleanData, ...values };
+    changePersonalDetailsProfile(id, sendData);
+    // console.log('handlerChangePersonalDetails sendData', sendData.gender, JSON.stringify(sendData));
   };
 
   handlerChangeContactDetails = values => {
@@ -48,6 +59,7 @@ class StaffMemberEditProfile extends React.Component {
       staffTypes,
       genderValues,
       payRates,
+      venues,
     } = this.props;
     // Personal Details
     const { firstName, surname, dateOfBirth, gender } = staffMemberEditPage;
@@ -118,6 +130,7 @@ class StaffMemberEditProfile extends React.Component {
                           statusStatement,
                           staffTypes,
                           payRates,
+                          venues,
                         }}
                         onChange={this.handlerChangeEmploymentDetails}
                       />
@@ -153,6 +166,7 @@ class StaffMemberEditProfile extends React.Component {
 }
 const mapDispatchToProps = {
   initialLoadEditProfile: actions.initialLoadActionEditProfile,
+  changePersonalDetailsProfile: actions.changePersonalDetailsAction,
 };
 
 const mapStateToProps = store => {
