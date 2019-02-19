@@ -5,7 +5,7 @@ import ContactDetails from './components/ContactDetails';
 import EmploymentDetails from './components/EmploymentDetails';
 import PersonalDetails from './components/PersonalDetails';
 import * as actions from './redux/actions';
-import { getEditProfile, getStaffTypes } from './selectors';
+import { getEditProfile, getStaffTypes, getVenues, getGenderValues } from './selectors';
 
 class StaffMemberEditProfile extends React.Component {
   state = {
@@ -24,6 +24,10 @@ class StaffMemberEditProfile extends React.Component {
     this.setState({ isFetching: false });
   };
 
+  handlerChangeStaffMember = values => {
+    console.log('handlerChangeStaffMember', values);
+  };
+
   render() {
     const { isFetching } = this.state;
     if (isFetching) {
@@ -34,6 +38,7 @@ class StaffMemberEditProfile extends React.Component {
       match: { url },
       staffMemberEditPage,
       staffTypes,
+      genderValues,
     } = this.props;
     // Personal Details
     const { firstName, surname, dateOfBirth, gender } = staffMemberEditPage;
@@ -104,16 +109,27 @@ class StaffMemberEditProfile extends React.Component {
                           statusStatement,
                           staffTypes,
                         }}
+                        onChange={this.handlerChangeStaffMember}
                       />
                     )}
                   />
                   <Route
                     path={`${url}/personal-details`}
-                    render={() => <PersonalDetails data={{ firstName, surname, dateOfBirth, gender }} />}
+                    render={() => (
+                      <PersonalDetails
+                        data={{ firstName, surname, dateOfBirth, gender, genderValues }}
+                        onChange={this.handlerChangeStaffMember}
+                      />
+                    )}
                   />
                   <Route
                     path={`${url}/contact-details`}
-                    render={() => <ContactDetails data={{ email, phoneNumber, address, postcode, country, county }} />}
+                    render={() => (
+                      <ContactDetails
+                        data={{ email, phoneNumber, address, postcode, country, county }}
+                        onChange={this.handlerChangeStaffMember}
+                      />
+                    )}
                   />
                   <Route exact path={`${url}`} render={() => <Redirect to={`${url}/employment-details`} />} />
                 </Switch>
@@ -130,7 +146,12 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = store => {
-  return { staffMemberEditPage: getEditProfile(store), staffTypes: getStaffTypes(store) };
+  return {
+    staffMemberEditPage: getEditProfile(store),
+    staffTypes: getStaffTypes(store),
+    venues: getVenues(store),
+    genderValues: getGenderValues(store),
+  };
 
   // return store;
 };

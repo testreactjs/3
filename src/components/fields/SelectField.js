@@ -8,7 +8,7 @@ export default class SelectField extends Component {
 
   handleChange = selectedOption => {
     this.setState({ selectedOption });
-    console.log('OnChange SelectField', this.props);
+    // console.log('OnChange SelectField', this.props);
     const { input } = this.props;
     input.onChange(selectedOption);
   };

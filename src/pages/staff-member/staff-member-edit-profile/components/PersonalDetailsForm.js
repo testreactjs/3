@@ -3,16 +3,22 @@ import { Form, Field } from 'react-final-form';
 import InputField from '../../../../components/fields/InputField';
 import SelectField from '../../../../components/fields/SelectField';
 import CalendarField from '../../../../components/fields/CalendarField';
-import { genderOptions } from '../../../../components/fields/form-options';
+// import { genderOptions } from '../../../../components/fields/form-options';
 
 class PersonalDetailsForm extends React.Component {
   onSubmit = values => {
-    console.log('onSubmit.PersonalDetailsForm', values);
+    const { onChange } = this.props;
+    onChange(values);
   };
 
   render() {
     console.log('PersonalDetailsForm this.props.data', this.props.data);
-    const { firstName, surname, gender } = this.props.data;
+    const { firstName, surname, gender, genderValues } = this.props.data;
+
+    const genderOptions = genderValues.map(value => {
+      return { value, label: value };
+    });
+
     return (
       <Form
         onSubmit={this.onSubmit}

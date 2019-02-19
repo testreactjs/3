@@ -40,3 +40,17 @@ export const getStaffTypes = createSelector(
     return [...staffTypes];
   },
 );
+
+export const getVenues = createSelector(
+  [venuesDataSelector],
+  venues => {
+    return [...venues];
+  },
+);
+
+export const getGenderValues = createSelector(
+  [genderValuesDataSelector],
+  genderValues => {
+    return [...genderValues];
+  },
+);

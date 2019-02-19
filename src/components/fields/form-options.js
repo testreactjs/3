@@ -1,4 +1,4 @@
-export const genderOptions = [{ value: 'male', label: 'Male' }, { value: 'femail', label: 'Female' }];
+// export const genderOptions = [{ value: 'male', label: 'Male' }, { value: 'female', label: 'Female' }];
 export const employmentStatusOptions = {
   employment_status_a: 'I have supplied my P45 from my previous employer',
   employment_status_b:

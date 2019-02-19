@@ -8,7 +8,9 @@ import { requiredDefault } from '../../../../utils/validators';
 
 class EmploymentDetails extends React.Component {
   onSubmit = values => {
-    console.log(' onSubmit EmploymentDetails ', values);
+    // console.log(' onSubmit EmploymentDetails ', values);
+    const { onChange } = this.props;
+    onChange(values);
   };
 
   render() {

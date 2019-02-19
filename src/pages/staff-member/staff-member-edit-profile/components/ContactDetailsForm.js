@@ -5,11 +5,13 @@ import { requiredEmail } from '../../../../utils/validators';
 
 class ContactDetails extends React.Component {
   onSubmit = values => {
-    console.log('onSubmit ContactDetails', values);
+    // console.log('onSubmit ContactDetails', values);
+    const { onChange } = this.props;
+    onChange(values);
   };
 
   render() {
-    console.log('this.props', this.props);
+    // console.log('this.props', this.props);
     const { email, phoneNumber, address, postcode, country, county } = this.props.data;
     return (
       <Form
@@ -27,7 +29,7 @@ class ContactDetails extends React.Component {
                 type="submit"
                 className="boss-button boss-form__submit boss-form__submit_adjust_single"
                 disabled={submitting}
-                onClick={value => this.onSubmit(value)}
+                onClick={() => this.onSubmit(values)}
               >
                 Save
               </button>
