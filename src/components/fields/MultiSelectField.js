@@ -16,21 +16,17 @@ const colourOptions = [
 ];
 
 export default class MultiSelectField extends Component {
-  state = {
-    multiValue: this.props.data,
-  };
-
   handleChange = selectedOptions => {
-    const { values } = this.state.multiValue;
-    console.log(values);
-    this.setState({ multiValue: [...selectedOptions].map(o => o.value) });
-    console.log('OnChange MultiSelectField', selectedOptions);
-    // const { input } = this.props;
-    // input.onChange(selectedOption);
+    const { input } = this.props;
+    if (!selectedOptions) {
+      return input.onChange([]);
+    }
+    const arrayValues = selectedOptions.split(',');
+    return input.onChange(arrayValues);
   };
 
   render() {
-    const { label, meta /* options, data */ } = this.props;
+    const { label, meta, input /* options, data */ } = this.props;
     // const { selectedOption } = this.state;
     /*
     const defaultValue = data.map(value => {
@@ -38,18 +34,14 @@ export default class MultiSelectField extends Component {
     });
     */
     // console.log('defaultValue, options', defaultValue, options);
+    console.log(input.value);
     return (
       <div className="boss-form__field">
         <label className="boss-form__label">
           <span className="boss-form__label-text">{label}</span>
         </label>
         <div className="boss-form__select">
-          <Select
-            onChange={this.handleChange}
-            defaultValue={[colourOptions[2], colourOptions[3]]}
-            options={colourOptions}
-            multi={true}
-          />
+          <Select onChange={this.handleChange} value={input.value} options={colourOptions} simpleValue multi />
         </div>
         {meta.error && meta.touched && <span>{meta.error}</span>}
       </div>

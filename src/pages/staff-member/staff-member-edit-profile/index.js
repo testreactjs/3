@@ -39,7 +39,7 @@ class StaffMemberEditProfile extends React.Component {
     } = this.props;
     const cleanDataPersonalDetails = { gender: null, dateOfBirth: null, firstName: null, surname: null };
     const sendDataPersonalDetails = { ...cleanDataPersonalDetails, ...values };
-    changePersonalDetailsProfile(id, sendDataPersonalDetails);
+    return changePersonalDetailsProfile(id, sendDataPersonalDetails);
     // console.log('handlerChangePersonalDetails sendData', sendData.gender, JSON.stringify(sendData));
   };
 
@@ -139,7 +139,7 @@ class StaffMemberEditProfile extends React.Component {
                     render={() => (
                       <PersonalDetails
                         data={{ firstName, surname, dateOfBirth, gender, genderValues }}
-                        onChange={this.handlerChangePersonalDetails}
+                        onSubmit={this.handlerChangePersonalDetails}
                       />
                     )}
                   />

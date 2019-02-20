@@ -15,7 +15,7 @@ class PersonalDetails extends React.Component {
             <h2 className="boss-content-switcher__title">Personal Details</h2>
           </header>
           <div className="boss-content-switcher__content">
-            <PersonalDetailsForm data={data} onChange={this.props.onChange} />
+            <PersonalDetailsForm data={data} onSubmit={this.props.onSubmit} />
           </div>
         </article>
       </section>
