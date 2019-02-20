@@ -20,10 +20,13 @@ export const changePersonalDetailsAction = (id, values) => dispatch => {
   return http
     .post(ApiService.updatePersonalDetails.getPath(id), JSON.stringify(values))
     .then(response => {
-      console.log('initialLoadActionEmploymentDetails', response.data);
+      console.log('changePersonalDetailsAction', response.data);
       dispatch(changePersonalDetails(response.data));
     })
     .catch(error => {
       console.log(error.response);
+      if (error.response.status === 422) {
+        console.log(error.response.data.errors);
+      }
     });
 };

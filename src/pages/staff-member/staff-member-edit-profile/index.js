@@ -37,9 +37,9 @@ class StaffMemberEditProfile extends React.Component {
         params: { id },
       },
     } = this.props;
-    const cleanData = { gender: null, dateOfBirth: null, firstName: null, surname: null };
-    const sendData = { ...cleanData, ...values };
-    changePersonalDetailsProfile(id, sendData);
+    const cleanDataPersonalDetails = { gender: null, dateOfBirth: null, firstName: null, surname: null };
+    const sendDataPersonalDetails = { ...cleanDataPersonalDetails, ...values };
+    changePersonalDetailsProfile(id, sendDataPersonalDetails);
     // console.log('handlerChangePersonalDetails sendData', sendData.gender, JSON.stringify(sendData));
   };
 
@@ -52,7 +52,7 @@ class StaffMemberEditProfile extends React.Component {
     if (isFetching) {
       return null;
     }
-    console.log('StaffMemberEditProfile this.props', this.props);
+    // console.log('StaffMemberEditProfile this.props', this.props);
     const {
       match: { url },
       staffMemberEditPage,
@@ -63,10 +63,8 @@ class StaffMemberEditProfile extends React.Component {
     } = this.props;
     // Personal Details
     const { firstName, surname, dateOfBirth, gender } = staffMemberEditPage;
-
     // Contact Details
     const { email, phoneNumber, address, postcode, country, county } = staffMemberEditPage;
-
     // Employment Details
     const {
       masterVenueId,
@@ -177,8 +175,6 @@ const mapStateToProps = store => {
     genderValues: getGenderValues(store),
     payRates: getPayRates(store),
   };
-
-  // return store;
 };
 
 export default connect(

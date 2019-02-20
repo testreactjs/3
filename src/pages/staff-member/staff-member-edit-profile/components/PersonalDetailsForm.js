@@ -12,7 +12,7 @@ class PersonalDetailsForm extends React.Component {
   };
 
   render() {
-    console.log('PersonalDetailsForm this.props.data', this.props.data);
+    // console.log('PersonalDetailsForm this.props.data', this.props.data);
     const { firstName, surname, gender, genderValues } = this.props.data;
 
     const genderOptions = genderValues.map(value => {

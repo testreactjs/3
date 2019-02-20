@@ -3,6 +3,31 @@ import { connect } from 'react-redux';
 import { getStaffMembers } from '../../selectors';
 import * as actions from './redux/actions';
 
+const DetailsListItem = ({ title, value, url, avatarUrl }) => {
+  return avatarUrl ? (
+    <div className="boss-table__cell">
+      <div className="boss-table__image">
+        <a href="#" className="boss-table__link">
+          <div className="boss-avatar boss-avatar_type_combined">
+            <img src={avatarUrl} className="boss-avatar__image" />
+          </div>
+        </a>
+      </div>
+    </div>
+  ) : (
+    <div className="boss-table__cell">
+      <div className="boss-table__info">
+        <p className="boss-table__label">{title}</p>
+        <p className="boss-table__text">
+          <a href={url} className="boss-table__link">
+            {value}
+          </a>
+        </p>
+      </div>
+    </div>
+  );
+};
+
 class StaffMembersList extends Component {
   state = {
     isFetching: true,
@@ -34,77 +59,13 @@ class StaffMembersList extends Component {
     const url = `/staff-member/profile/${id}`;
     return (
       <div key={id} className="boss-table__row">
-        <div className="boss-table__cell">
-          <div className="boss-table__image">
-            <a href="#" className="boss-table__link">
-              <div className="boss-avatar boss-avatar_type_combined">
-                <img src={avatarUrl} className="boss-avatar__image" />
-              </div>
-            </a>
-          </div>
-        </div>
-        <div className="boss-table__cell">
-          <div className="boss-table__info">
-            <p className="boss-table__label">Name</p>
-            <p className="boss-table__text">
-              <a href={url} className="boss-table__link">
-                {firstName} {surname}
-              </a>
-            </p>
-          </div>
-        </div>
-        <div className="boss-table__cell">
-          <div className="boss-table__info">
-            <p className="boss-table__label">Modified</p>
-            <p className="boss-table__text">
-              <a href={url} className="boss-table__link">
-                {' '}
-                --{' '}
-              </a>
-            </p>
-          </div>
-        </div>
-        <div key={id} className="boss-table__cell">
-          <div className="boss-table__info">
-            <p className="boss-table__label">Status</p>
-            <p className="boss-table__text">
-              <button className="boss-button boss-button_type_small boss-button_role_enabled boss-button_type_no-behavior">
-                {status}
-              </button>
-            </p>
-          </div>
-        </div>
-        <div className="boss-table__cell">
-          <div className="boss-table__info">
-            <p className="boss-table__label">Type</p>
-            <p className="boss-table__text">
-              <a href={url} className="boss-table__link">
-                {staffType}
-              </a>
-            </p>
-          </div>
-        </div>
-        <div className="boss-table__cell">
-          <div className="boss-table__info">
-            <p className="boss-table__label">Master Venue</p>
-            <p className="boss-table__text">
-              <a href={url} className="boss-table__link">
-                {masterVenue}
-              </a>
-            </p>
-          </div>
-        </div>
-        <div className="boss-table__cell">
-          <div className="boss-table__info">
-            <p className="boss-table__label">Work Venues</p>
-            <p className="boss-table__text">
-              <a href={url} className="boss-table__link">
-                {' '}
-                --{' '}
-              </a>
-            </p>
-          </div>
-        </div>
+        <DetailsListItem avatarUrl={avatarUrl} />
+        <DetailsListItem title="Name" value={`${firstName} ${surname}`} url={url} />
+        <DetailsListItem title="Modified" value="---" url={url} />
+        <DetailsListItem title="Status" value={status} url={url} />
+        <DetailsListItem title="Type" value={staffType} url={url} />
+        <DetailsListItem title="Master Venue" value={masterVenue} url={url} />
+        <DetailsListItem title="Work Venues" value="---" url={url} />
       </div>
     );
   };

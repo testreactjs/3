@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
 const colourOptions = [
   { value: 'ocean', label: 'Ocean', color: '#00B8D9', isFixed: true },
@@ -15,10 +16,17 @@ const colourOptions = [
 ];
 
 export default class MultiSelectField extends Component {
-  handleChange = selectedOption => {
-    console.log('OnChange MultiSelectField', selectedOption);
-    const { input } = this.props;
-    input.onChange(selectedOption);
+  state = {
+    multiValue: this.props.data,
+  };
+
+  handleChange = selectedOptions => {
+    const { values } = this.state.multiValue;
+    console.log(values);
+    this.setState({ multiValue: [...selectedOptions].map(o => o.value) });
+    console.log('OnChange MultiSelectField', selectedOptions);
+    // const { input } = this.props;
+    // input.onChange(selectedOption);
   };
 
   render() {

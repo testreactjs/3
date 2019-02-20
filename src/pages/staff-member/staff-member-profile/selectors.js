@@ -12,7 +12,7 @@ const payRatesDataSelector = data => data.staffMemberPage.payRates;
 export const getStaffMember = createSelector(
   [staffMemberSelector, staffTypesDataSelector, venuesDataSelector, genderValuesDataSelector, payRatesDataSelector],
   (staffMember, staffTypes, venues, genders, payRates) => {
-    console.log('staffMember', staffMember);
+    // console.log('staffMember', staffMember);
     const { staffTypeId, masterVenueId, otherVenueIds, payRateId } = staffMember;
     const staffType = staffTypes.find(value => value.id === staffTypeId);
     const venue = venues.find(value => value.id === masterVenueId);
