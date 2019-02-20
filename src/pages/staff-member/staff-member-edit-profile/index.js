@@ -6,7 +6,14 @@ import ContactDetails from './components/ContactDetails';
 import EmploymentDetails from './components/EmploymentDetails';
 import PersonalDetails from './components/PersonalDetails';
 import * as actions from './redux/actions';
-import { getEditProfile, getStaffTypes, getVenues, getGenderValues, getPayRates } from './selectors';
+import {
+  staffMemberSelector,
+  getStaffTypes,
+  getVenues,
+  getGenderValues,
+  getPayRates,
+  getGenderOptions,
+} from './selectors';
 
 class StaffMemberEditProfile extends React.Component {
   state = {
@@ -31,15 +38,8 @@ class StaffMemberEditProfile extends React.Component {
 
   handlerChangePersonalDetails = values => {
     console.log('handlerChangePersonalDetails', values);
-    const {
-      changePersonalDetailsProfile,
-      match: {
-        params: { id },
-      },
-    } = this.props;
-    const cleanDataPersonalDetails = { gender: null, dateOfBirth: null, firstName: null, surname: null };
-    const sendDataPersonalDetails = { ...cleanDataPersonalDetails, ...values };
-    return changePersonalDetailsProfile(id, sendDataPersonalDetails);
+    const { changePersonalDetailsProfile } = this.props;
+    return changePersonalDetailsProfile(values);
     // console.log('handlerChangePersonalDetails sendData', sendData.gender, JSON.stringify(sendData));
   };
 
@@ -52,31 +52,15 @@ class StaffMemberEditProfile extends React.Component {
     if (isFetching) {
       return null;
     }
-    // console.log('StaffMemberEditProfile this.props', this.props);
     const {
       match: { url },
-      staffMemberEditPage,
+      staffMember,
       staffTypes,
       genderValues,
+      genderOptions,
       payRates,
       venues,
     } = this.props;
-    // Personal Details
-    const { firstName, surname, dateOfBirth, gender } = staffMemberEditPage;
-    // Contact Details
-    const { email, phoneNumber, address, postcode, country, county } = staffMemberEditPage;
-    // Employment Details
-    const {
-      masterVenueId,
-      otherVenueIds,
-      staffTypeId,
-      /* dateOfBirth, */ payRateId,
-      dayPreferenceNote,
-      hoursPreferenceNote,
-      nationalInsuranceNumber,
-      sageId,
-      statusStatement,
-    } = staffMemberEditPage;
 
     return (
       <Router>
@@ -114,43 +98,22 @@ class StaffMemberEditProfile extends React.Component {
                     exact
                     path={`${url}/employment-details`}
                     render={() => (
-                      <EmploymentDetails
-                        data={{
-                          masterVenueId,
-                          otherVenueIds,
-                          staffTypeId,
-                          dateOfBirth,
-                          payRateId,
-                          dayPreferenceNote,
-                          hoursPreferenceNote,
-                          nationalInsuranceNumber,
-                          sageId,
-                          statusStatement,
-                          staffTypes,
-                          payRates,
-                          venues,
-                        }}
-                        onChange={this.handlerChangeEmploymentDetails}
-                      />
+                      <EmploymentDetails data={staffMember} onChange={this.handlerChangeEmploymentDetails} />
                     )}
                   />
                   <Route
                     path={`${url}/personal-details`}
                     render={() => (
                       <PersonalDetails
-                        data={{ firstName, surname, dateOfBirth, gender, genderValues }}
+                        genderOptions={genderOptions}
+                        staffMember={staffMember}
                         onSubmit={this.handlerChangePersonalDetails}
                       />
                     )}
                   />
                   <Route
                     path={`${url}/contact-details`}
-                    render={() => (
-                      <ContactDetails
-                        data={{ email, phoneNumber, address, postcode, country, county }}
-                        onChange={this.handlerChangeContactDetails}
-                      />
-                    )}
+                    render={() => <ContactDetails data={staffMember} onChange={this.handlerChangeContactDetails} />}
                   />
                   <Route exact path={`${url}`} render={() => <Redirect to={`${url}/employment-details`} />} />
                 </Switch>
@@ -169,10 +132,11 @@ const mapDispatchToProps = {
 
 const mapStateToProps = store => {
   return {
-    staffMemberEditPage: getEditProfile(store),
+    staffMember: staffMemberSelector(store),
     staffTypes: getStaffTypes(store),
     venues: getVenues(store),
     genderValues: getGenderValues(store),
+    genderOptions: getGenderOptions(store),
     payRates: getPayRates(store),
   };
 };

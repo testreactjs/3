@@ -3,8 +3,18 @@ import PersonalDetailsForm from './PersonalDetailsForm';
 
 class PersonalDetails extends React.Component {
   render() {
-    const { data } = this.props;
-    // console.log('PersonalDetails this.props', this.props);
+    const {
+      staffMember: { id, firstName, surname, dateOfBirth, gender },
+      genderOptions,
+    } = this.props;
+
+    const initialValues = {
+      id,
+      firstName,
+      surname,
+      dateOfBirth,
+      gender,
+    };
     return (
       <section className="boss-content-switcher__chapters">
         <article
@@ -15,7 +25,11 @@ class PersonalDetails extends React.Component {
             <h2 className="boss-content-switcher__title">Personal Details</h2>
           </header>
           <div className="boss-content-switcher__content">
-            <PersonalDetailsForm data={data} onSubmit={this.props.onSubmit} />
+            <PersonalDetailsForm
+              initialValues={initialValues}
+              genderOptions={genderOptions}
+              onSubmit={this.props.onSubmit}
+            />
           </div>
         </article>
       </section>

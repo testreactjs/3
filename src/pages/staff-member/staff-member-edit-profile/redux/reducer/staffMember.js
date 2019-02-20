@@ -6,11 +6,13 @@ const initialStateStaffMember = [];
 export const staffMemberReducer = handleActions(
   {
     [types.INITIAL_LOAD_EDIT_PROFILE]: (state, action) => {
-      console.log('INITIAL_LOAD_EDIT_PROFILE', action);
       const {
         payload: { staffMember },
       } = action;
       return staffMember;
+    },
+    [types.CHANGE_PERSONAL_DETAILS]: (state, action) => {
+      return action.payload;
     },
   },
   initialStateStaffMember,

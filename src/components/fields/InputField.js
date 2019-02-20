@@ -1,27 +1,35 @@
 import React, { Component } from 'react';
 
 export default class InputField extends Component {
-  render() {
-    console.log('InputField', this.props);
-    const { input, label, note, required, data, onChange } = this.props;
+  onChange = e => {
+    const {
+      target: { value },
+    } = e;
+    const {
+      input: { onChange },
+    } = this.props;
+    const valueToChange = value === '' ? null : value;
 
+    onChange(valueToChange);
+  };
+
+  render() {
+    // console.log('InputField', this.props);
+    const { input, meta, label, note, required } = this.props;
+    console.log(meta);
     return (
-      <div className="boss-form__field">
+      <section>
         <label className="boss-form__label">
           {label && (
             <span className="boss-form__label-text">
               {label} {required ? '*' : ''}
             </span>
           )}
-          <input
-            type="text"
-            className="boss-form__input"
-            onChange={event => onChange(event.target.value)}
-            defaultValue={data}
-          />
+          <input type="text" value={input.value} className="boss-form__input" onChange={this.onChange} />
         </label>
         {note && <p className="boss-form__field-note">{note}</p>}
-      </div>
+        {(meta.error || meta.submitError) && meta.touched && <span>{meta.error || meta.submitError}</span>}
+      </section>
     );
   }
 }

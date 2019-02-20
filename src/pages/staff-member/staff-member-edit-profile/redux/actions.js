@@ -14,13 +14,11 @@ export const initialLoadActionEditProfile = id => dispatch => {
   });
 };
 
-export const changePersonalDetailsAction = (id, values) => dispatch => {
+export const changePersonalDetailsAction = ({ id, ...values }) => dispatch => {
   // console.log('changePersonalDetailsAction', id, JSON.stringify(values));
   // const sendData = JSON.stringify(values);
   return http.post(ApiService.updatePersonalDetails.getPath(id), JSON.stringify(values)).then(response => {
-    console.log('changePersonalDetailsAction', response.data.errors);
     if (response.status !== 422) {
-      // console.log('changePersonalDetailsAction', response.data);
       dispatch(changePersonalDetails(response.data));
     }
     return response;
