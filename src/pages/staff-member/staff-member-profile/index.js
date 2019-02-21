@@ -3,78 +3,15 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import * as actions from './redux/actions';
 import { getStaffMember } from './selectors';
+import DetailsList from './components/DetailsList';
+import {
+  DetailsListItem,
+  DetailsListItemButton,
+  DetailsListItemMobile,
+  DetailsListItemImg,
+  DetailsListItemSpans,
+} from './components/DetailsListItems';
 
-const DetailsList = ({ title, pointerText, children }) => {
-  return (
-    <div className="boss-page-main__isle">
-      <section className="boss-details">
-        <p className="boss-details__pointer">
-          <span className="boss-details__pointer-text">{pointerText}</span>
-        </p>
-        <div className="boss-details__content">
-          <h3 className="boss-details__title">{title}</h3>
-          <ul className="boss-details__list">{children}</ul>
-        </div>
-      </section>
-    </div>
-  );
-};
-
-const DetailsListItem = ({ title, value, small }) => {
-  return (
-    <li className="boss-details__item">
-      <p className={`boss-details__label ${small === 'true' ? 'boss-details__label_size_small' : ''}`}>{title}</p>
-      <p className="boss-details__value">{value}</p>
-    </li>
-  );
-};
-
-const DetailsListItemButton = ({ title }) => {
-  return (
-    <li className="boss-details__item">
-      <button className="boss-button boss-button_role_view-history boss-button_type_small">{title}</button>
-    </li>
-  );
-};
-const DetailsListItemMobile = ({ title, value, hrefValue, secondSpan = '' }) => {
-  return (
-    <li className="boss-details__item">
-      <p className="boss-details__label">{title}</p>
-      <p className="boss-details__value">
-        <span className="boss-details__value-line">
-          <a href={hrefValue} className="boss-details__value-action">
-            {value}
-          </a>
-        </span>
-        {secondSpan !== '' ? <span className="boss-details__value-line">{secondSpan}</span> : ''}
-      </p>
-    </li>
-  );
-};
-const DetailsListItemImg = ({ title, value, imgUrl }) => {
-  return (
-    <li key={title} className="boss-details__item">
-      <p className="boss-details__label">{title}</p>
-      <p className="boss-details__value">
-        <img className="boss-details__qr" src={imgUrl} alt={value} />
-      </p>
-    </li>
-  );
-};
-
-const DetailsListItemSpans = ({ title, country, postcode, address, county }) => {
-  return (
-    <li className="boss-details__item">
-      <p className="boss-details__label boss-details__label_size_small">{title}</p>
-      <p className="boss-details__value">
-        <span className="boss-details__value-line">{address}</span>
-        <span className="boss-details__value-line">{county}</span>
-        <span className="boss-details__value-line">{country}</span>
-        <span className="boss-details__value-line">{postcode}</span>
-      </p>
-    </li>
-  );
-};
 class StaffMemberProfile extends React.Component {
   state = {
     isFetching: true,

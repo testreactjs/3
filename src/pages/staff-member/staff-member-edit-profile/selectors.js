@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { toTitle } from '../../../utils/functions';
 
 const noData = 'N/A';
 
@@ -28,7 +29,7 @@ export const getEditProfile = createSelector(
     };
   },
 );
-export const getStaffTypes = createSelector(
+export const getStaffTypesOptions = createSelector(
   [staffTypesDataSelector],
   staffTypes => {
     return [...staffTypes];
@@ -55,13 +56,19 @@ export const getGenderOptions = createSelector(
     return genderValues.map(value => {
       return {
         value,
-        label: value,
+        label: toTitle(value),
       };
     });
   },
 );
+export const getVenuesOptions = createSelector(
+  [venuesDataSelector],
+  venues => {
+    return [...venues];
+  },
+);
 
-export const getPayRates = createSelector(
+export const getPayRatesOptions = createSelector(
   [payRatesDataSelector],
   payRates => {
     return [...payRates];

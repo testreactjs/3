@@ -8,10 +8,9 @@ import PersonalDetails from './components/PersonalDetails';
 import * as actions from './redux/actions';
 import {
   staffMemberSelector,
-  getStaffTypes,
-  getVenues,
-  getGenderValues,
-  getPayRates,
+  getStaffTypesOptions,
+  getVenuesOptions,
+  getPayRatesOptions,
   getGenderOptions,
 } from './selectors';
 
@@ -55,11 +54,10 @@ class StaffMemberEditProfile extends React.Component {
     const {
       match: { url },
       staffMember,
-      staffTypes,
-      genderValues,
       genderOptions,
-      payRates,
-      venues,
+      venuesOptions,
+      payRatesOptions,
+      staffTypesOptions,
     } = this.props;
 
     return (
@@ -98,7 +96,13 @@ class StaffMemberEditProfile extends React.Component {
                     exact
                     path={`${url}/employment-details`}
                     render={() => (
-                      <EmploymentDetails data={staffMember} onChange={this.handlerChangeEmploymentDetails} />
+                      <EmploymentDetails
+                        staffTypesOptions={staffTypesOptions}
+                        payRatesOptions={payRatesOptions}
+                        venuesOptions={venuesOptions}
+                        staffMember={staffMember}
+                        onChange={this.handlerChangeEmploymentDetails}
+                      />
                     )}
                   />
                   <Route
@@ -113,7 +117,9 @@ class StaffMemberEditProfile extends React.Component {
                   />
                   <Route
                     path={`${url}/contact-details`}
-                    render={() => <ContactDetails data={staffMember} onChange={this.handlerChangeContactDetails} />}
+                    render={() => (
+                      <ContactDetails staffMember={staffMember} onChange={this.handlerChangeContactDetails} />
+                    )}
                   />
                   <Route exact path={`${url}`} render={() => <Redirect to={`${url}/employment-details`} />} />
                 </Switch>
@@ -133,11 +139,10 @@ const mapDispatchToProps = {
 const mapStateToProps = store => {
   return {
     staffMember: staffMemberSelector(store),
-    staffTypes: getStaffTypes(store),
-    venues: getVenues(store),
-    genderValues: getGenderValues(store),
+    staffTypesOptions: getStaffTypesOptions(store),
     genderOptions: getGenderOptions(store),
-    payRates: getPayRates(store),
+    venuesOptions: getVenuesOptions(store),
+    payRatesOptions: getPayRatesOptions(store),
   };
 };
 

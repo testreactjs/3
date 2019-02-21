@@ -16,95 +16,59 @@ class EmploymentDetails extends React.Component {
 
   render() {
     console.log('this.props EmploymentDetails', this.props);
-    const {
-      masterVenueId,
-      otherVenueIds,
-      staffTypeId,
-      dateOfBirth,
-      payRateId,
-      dayPreferenceNote,
-      hoursPreferenceNote,
-      nationalInsuranceNumber,
-      sageId,
-      statusStatement,
-      staffTypes,
-      payRates,
-      venues,
-    } = this.props.data;
+    const { initialValues, staffTypesOptions, payRatesOptions, venuesOptions } = this.props;
 
     // const optionsSelect = [{ value: '1', label: 'Options 1' }, { value: '2', label: 'Options 2' }];
-    const optionsSelectStaffTypes = staffTypes.map(value => {
+    const optionsSelectStaffTypes = staffTypesOptions.map(value => {
       return { value: value.id, label: value.name };
     });
-    const optionSelectPayRates = payRates.map(value => {
+    const optionSelectPayRates = payRatesOptions.map(value => {
       return { value: value.id, label: value.name };
     });
-    const optionSelectVenues = venues.map(value => {
+    const optionSelectVenues = venuesOptions.map(value => {
       return { value: value.id, label: value.name };
     });
     return (
       <Form
         onSubmit={this.onSubmit}
+        initialValues={initialValues}
         render={({ handleSubmit, form, values }) => (
           <form onSubmit={handleSubmit} className="boss-form boss-form_page_profile-edit">
+            <Field name="masterVenueId" component={InputField} label="Main Venue" validate={requiredDefault} />
             <Field
-              name="mainVenue"
-              component={InputField}
-              label="Main Venue"
-              validate={requiredDefault}
-              data={masterVenueId}
-            />
-            <Field
-              name="otherVenues"
+              name="otherVenueIds"
               component={MultiSelectField}
               options={optionSelectVenues}
               label="Other Venues"
-              data={otherVenueIds}
             />
             <Field
-              name="staffType"
+              name="staffTypeId"
               component={SelectField}
               options={optionsSelectStaffTypes}
               label="Staff Type*"
               required
-              data={staffTypeId}
             />
-            <Field name="dateOfBirth" component={CalendarField} label="Date of birth*" data={dateOfBirth} />
+            <Field name="dateOfBirth" component={CalendarField} label="Date of birth*" />
+            <Field name="payRateId" options={optionSelectPayRates} component={SelectField} label="Pay rate" required />
             <Field
-              name="payRate"
-              options={optionSelectPayRates}
-              component={SelectField}
-              label="Pay rate"
-              data={payRateId}
-              required
-            />
-            <Field
-              name="dayPreference"
+              name="dayPreferenceNote"
               component={InputField}
-              data={dayPreferenceNote}
               label="Day Preference"
               note="Preferred days to work displayed to the rota (e.g mornings and weekends)"
             />
             <Field
-              name="hoursPreference"
+              name="hoursPreferenceNote"
               component={InputField}
-              data={hoursPreferenceNote}
               label="Hours Preference"
               note="Preferred number of hours to work per week displayed in the rota (e.g 40,20+)"
             />
-            <Field
-              name="nationalInsuranceNumber"
-              component={InputField}
-              label="National Insurance Number"
-              data={nationalInsuranceNumber}
-            />
-            <Field name="sageId" component={InputField} label="Sage ID" data={sageId} />
+            <Field name="nationalInsuranceNumber" component={InputField} label="National Insurance Number" />
+            <Field name="sageId" component={InputField} label="Sage ID" />
 
             <Field
-              name="employmentStatus"
+              name="statusStatement"
               component={ChoiceListField}
               title="Starter Employement Status Statement"
-              data={statusStatement}
               note="Tick one that applies"
             />
             <div className="boss-form__field boss-form__field_justify_end">

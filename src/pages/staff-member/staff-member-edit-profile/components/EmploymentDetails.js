@@ -3,7 +3,42 @@ import EmploymentDetailsForm from './EmploymentDetailsForm';
 
 class EmploymentDetails extends React.Component {
   render() {
-    const { data } = this.props;
+    const {
+      staffMember: {
+        masterVenueId,
+        otherVenueIds,
+        staffTypeId,
+        dateOfBirth,
+        payRateId,
+        dayPreferenceNote,
+        hoursPreferenceNote,
+        nationalInsuranceNumber,
+        sageId,
+        statusStatement,
+        staffTypes,
+        payRates,
+        venues,
+      },
+      staffTypesOptions,
+      venuesOptions,
+      payRatesOptions,
+    } = this.props;
+
+    const initialValues = {
+      masterVenueId,
+      otherVenueIds,
+      staffTypeId,
+      dateOfBirth,
+      payRateId,
+      dayPreferenceNote,
+      hoursPreferenceNote,
+      nationalInsuranceNumber,
+      sageId,
+      statusStatement,
+      staffTypes,
+      payRates,
+      venues,
+    };
     return (
       <section className="boss-content-switcher__chapters">
         <article
@@ -14,7 +49,13 @@ class EmploymentDetails extends React.Component {
             <h2 className="boss-content-switcher__title">Employment Details</h2>
           </header>
           <div className="boss-content-switcher__content">
-            <EmploymentDetailsForm data={data} onChange={this.props.onChange} />
+            <EmploymentDetailsForm
+              initialValues={initialValues}
+              onChange={this.props.onChange}
+              staffTypesOptions={staffTypesOptions}
+              payRatesOptions={payRatesOptions}
+              venuesOptions={venuesOptions}
+            />
           </div>
         </article>
       </section>

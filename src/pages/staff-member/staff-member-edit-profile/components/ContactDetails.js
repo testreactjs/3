@@ -3,7 +3,10 @@ import ContactDetailsForm from './ContactDetailsForm';
 
 class ContactDetails extends React.Component {
   render() {
-    const { data } = this.props;
+    const {
+      staffMember: { email, phoneNumber, address, postcode, country, county },
+    } = this.props;
+    const initialValues = { email, phoneNumber, address, postcode, country, county };
     return (
       <section className="boss-content-switcher__chapters">
         <article
@@ -14,7 +17,7 @@ class ContactDetails extends React.Component {
             <h2 className="boss-content-switcher__title">Contact Details</h2>
           </header>
           <div className="boss-content-switcher__content">
-            <ContactDetailsForm data={data} onChange={this.props.onChange} />
+            <ContactDetailsForm initialValues={initialValues} onChange={this.props.onChange} />
           </div>
         </article>
       </section>

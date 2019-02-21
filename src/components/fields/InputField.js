@@ -18,7 +18,7 @@ export default class InputField extends Component {
     const { input, meta, label, note, required } = this.props;
     console.log(meta);
     return (
-      <section>
+      <div className="boss-form__field">
         <label className="boss-form__label">
           {label && (
             <span className="boss-form__label-text">
@@ -28,8 +28,14 @@ export default class InputField extends Component {
           <input type="text" value={input.value} className="boss-form__input" onChange={this.onChange} />
         </label>
         {note && <p className="boss-form__field-note">{note}</p>}
-        {(meta.error || meta.submitError) && meta.touched && <span>{meta.error || meta.submitError}</span>}
-      </section>
+        {(meta.error || meta.submitError) && meta.touched && (
+          <div className="boss-form__error">
+            <p className="boss-form__error-text">
+              <span className="boss-form__error-line">{meta.error || meta.submitError}</span>
+            </p>
+          </div>
+        )}
+      </div>
     );
   }
 }

@@ -12,18 +12,19 @@ class ContactDetails extends React.Component {
 
   render() {
     // console.log('this.props', this.props);
-    const { email, phoneNumber, address, postcode, country, county } = this.props.data;
+    const { initialValues } = this.props;
     return (
       <Form
         onSubmit={this.onSubmit}
+        initialValues={initialValues}
         render={({ handleSubmit, form, submitting, values }) => (
           <form onSubmit={handleSubmit} className="boss-form boss-form_page_profile-edit">
-            <Field name="email" component={InputField} label="Email" validate={requiredEmail} data={email} />
-            <Field name="phoneNumber" component={InputField} label="Phone number" data={phoneNumber} />
-            <Field name="address" component={InputField} label="Address" data={address} />
-            <Field name="postcode" component={InputField} label="Postcode" data={postcode} />
-            <Field name="country" component={InputField} label="Country" data={country} />
-            <Field name="county" component={InputField} label="County" data={county} />
+            <Field name="email" component={InputField} label="Email" validate={requiredEmail} />
+            <Field name="phoneNumber" component={InputField} label="Phone number" />
+            <Field name="address" component={InputField} label="Address" />
+            <Field name="postcode" component={InputField} label="Postcode" />
+            <Field name="country" component={InputField} label="Country" />
+            <Field name="county" component={InputField} label="County" />
             <div className="boss-form__field boss-form__field_justify_end">
               <button
                 type="submit"

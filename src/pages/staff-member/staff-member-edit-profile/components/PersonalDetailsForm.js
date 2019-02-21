@@ -20,7 +20,7 @@ class PersonalDetailsForm extends React.Component {
 
   render() {
     const { initialValues, genderOptions } = this.props;
-    console.log(genderOptions);
+    // console.log(genderOptions);
     // console.log(initialValues);
     return (
       <Form
