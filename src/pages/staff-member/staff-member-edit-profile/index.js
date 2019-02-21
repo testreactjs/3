@@ -32,19 +32,16 @@ class StaffMemberEditProfile extends React.Component {
   };
 
   handlerUpdateEmploymentDetails = values => {
-    console.log('updateEmploymentDetails', values);
     const { updateEmploymentDetails } = this.props;
     return updateEmploymentDetails(values);
   };
 
   handlerUpdatePersonalDetails = values => {
-    console.log('updatePersonalDetails', values);
     const { updatePersonalDetails } = this.props;
     return updatePersonalDetails(values);
   };
 
   handlerUpdateContactDetails = values => {
-    console.log('updateContactDetails', values);
     const { updateContactDetails } = this.props;
     return updateContactDetails(values);
   };

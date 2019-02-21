@@ -6,13 +6,13 @@ import 'react-datepicker/dist/react-datepicker.css';
 export default class CalendarField extends Component {
   handleChange = date => {
     const { input } = this.props;
-    const formattedDate = moment(date).format('DD-MM-YYYY');
-    input.onChange(formattedDate);
+    // const formattedDate = moment(date).format('DD-MM-YYYY');
+    input.onChange(date);
   };
 
   render() {
     const { label, meta, input } = this.props;
-    // console.log(input.value);
+    console.log(input.value);
     return (
       <div className="boss-form__field">
         <label className="boss-form__label">

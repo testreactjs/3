@@ -10,7 +10,7 @@ import { requiredDefault } from '../../../../utils/validators';
 class EmploymentDetails extends React.Component {
   onSubmit = values => {
     const { onSubmit } = this.props;
-    return onSubmit(values).then(response => {
+    return onSubmit({ values }).then(response => {
       // console.log(response.status);
       if (response.status === 422) {
         // console.log('PersonalDetailsForm', response.data.errors);
