@@ -12,7 +12,6 @@ const payRatesDataSelector = data => data.staffMemberPage.payRates;
 export const getStaffMember = createSelector(
   [staffMemberSelector, staffTypesDataSelector, venuesDataSelector, genderValuesDataSelector, payRatesDataSelector],
   (staffMember, staffTypes, venues, genders, payRates) => {
-    // console.log('staffMember', staffMember);
     const { staffTypeId, masterVenueId, otherVenueIds, payRateId } = staffMember;
     const staffType = staffTypes.find(value => value.id === staffTypeId);
     const venue = venues.find(value => value.id === masterVenueId);
@@ -27,10 +26,6 @@ export const getStaffMember = createSelector(
       isActive: staffMember.isDisabled ? 'Disabled' : 'Active',
       payRate: payRate ? payRate.name : noData,
       otherVenues: otherVenues ? otherVenues.join(', ') : '',
-      // payRateId: payRate,
-      // : staffType ? staffType.name : 'N/A',
-      // staffTypeColor: staffType.color,
-      // masterVenue: venue ?  venue.name : 'N/A',
     };
   },
 );

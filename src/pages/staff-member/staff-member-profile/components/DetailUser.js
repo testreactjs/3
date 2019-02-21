@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class DetailUser extends Component {
   render() {
-    const {id, avatarUrl, firstName, surname, staffTypeName, email, phoneNumber, venueName} = this.props;
+    const { id, avatarUrl, firstName, surname, staffTypeName, email, phoneNumber, venueName } = this.props;
     return (
       <div className="boss-page-dashboard__user-summary">
         <div className="boss-user-summary">

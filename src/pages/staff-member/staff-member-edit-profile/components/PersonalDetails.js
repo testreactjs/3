@@ -38,5 +38,3 @@ class PersonalDetails extends React.Component {
 }
 
 export default PersonalDetails;
-
-// <pre>{JSON.stringify(values, null, 2)}</pre>

@@ -11,9 +11,7 @@ class EmploymentDetails extends React.Component {
   onSubmit = values => {
     const { onSubmit } = this.props;
     return onSubmit(values).then(response => {
-      // console.log(response.status);
       if (response.status === 422) {
-        // console.log('PersonalDetailsForm', response.data.errors);
         return response.data.errors;
       }
       return response;
@@ -21,7 +19,6 @@ class EmploymentDetails extends React.Component {
   };
 
   render() {
-    // console.log('this.props EmploymentDetails', this.props);
     const { initialValues, staffTypesOptions, payRatesOptions, venuesOptions } = this.props;
     return (
       <Form

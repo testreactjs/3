@@ -8,7 +8,6 @@ const staffTypesDataSelector = data => data.staffMemberEditPage.staffTypes;
 const venuesDataSelector = data => data.staffMemberEditPage.venues;
 const genderValuesDataSelector = data => data.staffMemberEditPage.genderValues;
 const payRatesDataSelector = data => data.staffMemberEditPage.payRates;
-// const staffMemberSelector = data => data.staffMember.staffMember;
 
 export const getEditProfile = createSelector(
   [staffMemberSelector, staffTypesDataSelector, venuesDataSelector, genderValuesDataSelector, payRatesDataSelector],
