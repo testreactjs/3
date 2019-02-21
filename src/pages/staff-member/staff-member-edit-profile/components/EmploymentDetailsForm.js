@@ -23,15 +23,6 @@ class EmploymentDetails extends React.Component {
   render() {
     // console.log('this.props EmploymentDetails', this.props);
     const { initialValues, staffTypesOptions, payRatesOptions, venuesOptions } = this.props;
-
-    // const optionsSelect = [{ value: '1', label: 'Options 1' }, { value: '2', label: 'Options 2' }];
-    const optionsSelectStaffTypes = staffTypesOptions.map(value => {
-      return { value: value.id, label: value.name };
-    });
-    const optionSelectPayRates = payRatesOptions.map(value => {
-      return { value: value.id, label: value.name };
-    });
-
     return (
       <Form
         onSubmit={this.onSubmit}
@@ -46,15 +37,9 @@ class EmploymentDetails extends React.Component {
               validate={requiredDefault}
             />
             <Field name="otherVenues" component={MultiSelectField} options={venuesOptions} label="Other Venues" />
-            <Field
-              name="staffType"
-              component={SelectField}
-              options={optionsSelectStaffTypes}
-              label="Staff Type"
-              required
-            />
+            <Field name="staffType" component={SelectField} options={staffTypesOptions} label="Staff Type" required />
             <Field name="startsAt" component={CalendarField} label="Starts at" required />
-            <Field name="payRateId" options={optionSelectPayRates} component={SelectField} label="Pay rate" required />
+            <Field name="payRateId" options={payRatesOptions} component={SelectField} label="Pay rate" required />
             <Field
               name="dayPreferenceNote"
               component={InputField}

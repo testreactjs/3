@@ -32,21 +32,9 @@ export const getEditProfile = createSelector(
 export const getStaffTypesOptions = createSelector(
   [staffTypesDataSelector],
   staffTypes => {
-    return [...staffTypes];
-  },
-);
-
-export const getVenues = createSelector(
-  [venuesDataSelector],
-  venues => {
-    return [...venues];
-  },
-);
-
-export const getGenderValues = createSelector(
-  [genderValuesDataSelector],
-  genderValues => {
-    return [...genderValues];
+    return staffTypes.map(value => {
+      return { value: value.id, label: value.name };
+    });
   },
 );
 
@@ -73,6 +61,8 @@ export const getVenuesOptions = createSelector(
 export const getPayRatesOptions = createSelector(
   [payRatesDataSelector],
   payRates => {
-    return [...payRates];
+    return payRates.map(value => {
+      return { value: value.id, label: value.name };
+    });
   },
 );
