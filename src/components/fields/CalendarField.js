@@ -20,7 +20,7 @@ export default class CalendarField extends Component {
           <span className="boss-form__label-text">{label}</span>
           <div className="date-picker-input">
             <DatePicker
-              selected={input.value ? toDate(input.value) : new Date()}
+              selected={input.value ? toDate(input.value) : ''}
               onChange={this.handleChange}
               withPortal
               dateFormat="dd-MM-YYYY"

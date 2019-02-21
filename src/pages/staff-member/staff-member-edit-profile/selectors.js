@@ -56,7 +56,6 @@ export const getVenuesOptions = createSelector(
     });
   },
 );
-
 export const getPayRatesOptions = createSelector(
   [payRatesDataSelector],
   payRates => {

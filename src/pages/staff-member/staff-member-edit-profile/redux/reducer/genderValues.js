@@ -6,7 +6,6 @@ const initialStateGenderValues = [];
 export const genderValuesReducer = handleActions(
   {
     [types.INITIAL_LOAD_EDIT_PROFILE]: (state, action) => {
-      // console.log('INITIAL_LOAD_PROFILE', action);
       const {
         payload: { genderValues },
       } = action;
