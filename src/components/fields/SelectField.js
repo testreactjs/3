@@ -17,7 +17,13 @@ export default class SelectField extends Component {
         <div className="boss-form__select">
           <Select onChange={this.handleChange} value={input.value} options={options} simpleValue />
         </div>
-        {meta.error && meta.touched && <span>{meta.error}</span>}
+        {(meta.error || meta.submitError) && meta.touched && (
+          <div className="boss-form__error">
+            <p className="boss-form__error-text">
+              <span className="boss-form__error-line">{meta.error || meta.submitError}</span>
+            </p>
+          </div>
+        )}
       </div>
     );
   }

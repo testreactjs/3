@@ -64,7 +64,9 @@ export const getGenderOptions = createSelector(
 export const getVenuesOptions = createSelector(
   [venuesDataSelector],
   venues => {
-    return [...venues];
+    return venues.map(value => {
+      return { value: value.id, label: value.name };
+    });
   },
 );
 

@@ -25,9 +25,7 @@ class EmploymentDetails extends React.Component {
     const optionSelectPayRates = payRatesOptions.map(value => {
       return { value: value.id, label: value.name };
     });
-    const optionSelectVenues = venuesOptions.map(value => {
-      return { value: value.id, label: value.name };
-    });
+
     return (
       <Form
         onSubmit={this.onSubmit}
@@ -35,12 +33,7 @@ class EmploymentDetails extends React.Component {
         render={({ handleSubmit, form, values }) => (
           <form onSubmit={handleSubmit} className="boss-form boss-form_page_profile-edit">
             <Field name="masterVenueId" component={InputField} label="Main Venue" validate={requiredDefault} />
-            <Field
-              name="otherVenueIds"
-              component={MultiSelectField}
-              options={optionSelectVenues}
-              label="Other Venues"
-            />
+            <Field name="otherVenueIds" component={MultiSelectField} options={venuesOptions} label="Other Venues" />
             <Field
               name="staffTypeId"
               component={SelectField}

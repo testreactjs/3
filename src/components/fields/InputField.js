@@ -16,7 +16,6 @@ export default class InputField extends Component {
   render() {
     // console.log('InputField', this.props);
     const { input, meta, label, note, required } = this.props;
-    console.log(meta);
     return (
       <div className="boss-form__field">
         <label className="boss-form__label">
