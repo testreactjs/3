@@ -9,13 +9,19 @@ import { requiredDefault } from '../../../../utils/validators';
 
 class EmploymentDetails extends React.Component {
   onSubmit = values => {
-    // console.log(' onSubmit EmploymentDetails ', values);
-    const { onChange } = this.props;
-    onChange(values);
+    const { onSubmit } = this.props;
+    return onSubmit(values).then(response => {
+      // console.log(response.status);
+      if (response.status === 422) {
+        // console.log('PersonalDetailsForm', response.data.errors);
+        return response.data.errors;
+      }
+      return response;
+    });
   };
 
   render() {
-    console.log('this.props EmploymentDetails', this.props);
+    // console.log('this.props EmploymentDetails', this.props);
     const { initialValues, staffTypesOptions, payRatesOptions, venuesOptions } = this.props;
 
     // const optionsSelect = [{ value: '1', label: 'Options 1' }, { value: '2', label: 'Options 2' }];
@@ -32,16 +38,22 @@ class EmploymentDetails extends React.Component {
         initialValues={initialValues}
         render={({ handleSubmit, form, values }) => (
           <form onSubmit={handleSubmit} className="boss-form boss-form_page_profile-edit">
-            <Field name="masterVenueId" component={InputField} label="Main Venue" validate={requiredDefault} />
-            <Field name="otherVenueIds" component={MultiSelectField} options={venuesOptions} label="Other Venues" />
             <Field
-              name="staffTypeId"
+              name="masterVenue"
+              component={SelectField}
+              options={venuesOptions}
+              label="Main Venue"
+              validate={requiredDefault}
+            />
+            <Field name="otherVenues" component={MultiSelectField} options={venuesOptions} label="Other Venues" />
+            <Field
+              name="staffType"
               component={SelectField}
               options={optionsSelectStaffTypes}
-              label="Staff Type*"
+              label="Staff Type"
               required
             />
-            <Field name="dateOfBirth" component={CalendarField} label="Date of birth*" />
+            <Field name="startsAt" component={CalendarField} label="Starts at" required />
             <Field name="payRateId" options={optionSelectPayRates} component={SelectField} label="Pay rate" required />
             <Field
               name="dayPreferenceNote"
@@ -59,7 +71,7 @@ class EmploymentDetails extends React.Component {
             <Field name="sageId" component={InputField} label="Sage ID" />
 
             <Field
-              name="statusStatement"
+              name="employmentStatus"
               component={ChoiceListField}
               title="Starter Employement Status Statement"
               note="Tick one that applies"

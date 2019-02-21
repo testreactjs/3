@@ -5,9 +5,15 @@ import { requiredEmail } from '../../../../utils/validators';
 
 class ContactDetails extends React.Component {
   onSubmit = values => {
-    // console.log('onSubmit ContactDetails', values);
-    const { onChange } = this.props;
-    onChange(values);
+    const { onSubmit } = this.props;
+    return onSubmit(values).then(response => {
+      // console.log(response.status);
+      if (response.status === 422) {
+        // console.log('PersonalDetailsForm', response.data.errors);
+        return response.data.errors;
+      }
+      return response;
+    });
   };
 
   render() {
@@ -19,7 +25,7 @@ class ContactDetails extends React.Component {
         initialValues={initialValues}
         render={({ handleSubmit, form, submitting, values }) => (
           <form onSubmit={handleSubmit} className="boss-form boss-form_page_profile-edit">
-            <Field name="email" component={InputField} label="Email" validate={requiredEmail} />
+            <Field name="emailAddress" component={InputField} label="Email" validate={requiredEmail} />
             <Field name="phoneNumber" component={InputField} label="Phone number" />
             <Field name="address" component={InputField} label="Address" />
             <Field name="postcode" component={InputField} label="Postcode" />

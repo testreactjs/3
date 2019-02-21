@@ -4,9 +4,9 @@ import ContactDetailsForm from './ContactDetailsForm';
 class ContactDetails extends React.Component {
   render() {
     const {
-      staffMember: { email, phoneNumber, address, postcode, country, county },
+      staffMember: { id, email, phoneNumber, address, postcode, country, county },
     } = this.props;
-    const initialValues = { email, phoneNumber, address, postcode, country, county };
+    const initialValues = { id, emailAddress: email, phoneNumber, address, postcode, country, county };
     return (
       <section className="boss-content-switcher__chapters">
         <article
@@ -17,7 +17,7 @@ class ContactDetails extends React.Component {
             <h2 className="boss-content-switcher__title">Contact Details</h2>
           </header>
           <div className="boss-content-switcher__content">
-            <ContactDetailsForm initialValues={initialValues} onChange={this.props.onChange} />
+            <ContactDetailsForm initialValues={initialValues} onSubmit={this.props.onSubmit} />
           </div>
         </article>
       </section>

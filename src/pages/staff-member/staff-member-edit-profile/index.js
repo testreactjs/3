@@ -31,19 +31,22 @@ class StaffMemberEditProfile extends React.Component {
     this.setState({ isFetching: false });
   };
 
-  handlerChangeEmploymentDetails = values => {
-    console.log('handlerChangeEmploymentDetails', values);
+  handlerUpdateEmploymentDetails = values => {
+    console.log('updateEmploymentDetails', values);
+    const { updateEmploymentDetails } = this.props;
+    return updateEmploymentDetails(values);
   };
 
-  handlerChangePersonalDetails = values => {
-    console.log('handlerChangePersonalDetails', values);
-    const { changePersonalDetailsProfile } = this.props;
-    return changePersonalDetailsProfile(values);
-    // console.log('handlerChangePersonalDetails sendData', sendData.gender, JSON.stringify(sendData));
+  handlerUpdatePersonalDetails = values => {
+    console.log('updatePersonalDetails', values);
+    const { updatePersonalDetails } = this.props;
+    return updatePersonalDetails(values);
   };
 
-  handlerChangeContactDetails = values => {
-    console.log('handlerChangeContactDetails', values);
+  handlerUpdateContactDetails = values => {
+    console.log('updateContactDetails', values);
+    const { updateContactDetails } = this.props;
+    return updateContactDetails(values);
   };
 
   render() {
@@ -101,7 +104,7 @@ class StaffMemberEditProfile extends React.Component {
                         payRatesOptions={payRatesOptions}
                         venuesOptions={venuesOptions}
                         staffMember={staffMember}
-                        onChange={this.handlerChangeEmploymentDetails}
+                        onSubmit={this.handlerUpdateEmploymentDetails}
                       />
                     )}
                   />
@@ -111,14 +114,14 @@ class StaffMemberEditProfile extends React.Component {
                       <PersonalDetails
                         genderOptions={genderOptions}
                         staffMember={staffMember}
-                        onSubmit={this.handlerChangePersonalDetails}
+                        onSubmit={this.handlerUpdatePersonalDetails}
                       />
                     )}
                   />
                   <Route
                     path={`${url}/contact-details`}
                     render={() => (
-                      <ContactDetails staffMember={staffMember} onChange={this.handlerChangeContactDetails} />
+                      <ContactDetails staffMember={staffMember} onSubmit={this.handlerUpdateContactDetails} />
                     )}
                   />
                   <Route exact path={`${url}`} render={() => <Redirect to={`${url}/employment-details`} />} />
@@ -133,7 +136,9 @@ class StaffMemberEditProfile extends React.Component {
 }
 const mapDispatchToProps = {
   initialLoadEditProfile: actions.initialLoadActionEditProfile,
-  changePersonalDetailsProfile: actions.changePersonalDetailsAction,
+  updateEmploymentDetails: actions.updateEmploymentDetailsAction,
+  updatePersonalDetails: actions.updatePersonalDetailsAction,
+  updateContactDetails: actions.updateContactDetailsAction,
 };
 
 const mapStateToProps = store => {

@@ -5,10 +5,11 @@ class EmploymentDetails extends React.Component {
   render() {
     const {
       staffMember: {
+        id,
         masterVenueId,
         otherVenueIds,
         staffTypeId,
-        dateOfBirth,
+        startsAt,
         payRateId,
         dayPreferenceNote,
         hoursPreferenceNote,
@@ -25,16 +26,17 @@ class EmploymentDetails extends React.Component {
     } = this.props;
 
     const initialValues = {
-      masterVenueId,
-      otherVenueIds,
-      staffTypeId,
-      dateOfBirth,
+      id,
+      masterVenue: masterVenueId,
+      otherVenues: otherVenueIds,
+      staffType: staffTypeId,
+      startsAt,
       payRateId,
       dayPreferenceNote,
       hoursPreferenceNote,
       nationalInsuranceNumber,
       sageId,
-      statusStatement,
+      employmentStatus: statusStatement,
       staffTypes,
       payRates,
       venues,
@@ -51,7 +53,7 @@ class EmploymentDetails extends React.Component {
           <div className="boss-content-switcher__content">
             <EmploymentDetailsForm
               initialValues={initialValues}
-              onChange={this.props.onChange}
+              onSubmit={this.props.onSubmit}
               staffTypesOptions={staffTypesOptions}
               payRatesOptions={payRatesOptions}
               venuesOptions={venuesOptions}

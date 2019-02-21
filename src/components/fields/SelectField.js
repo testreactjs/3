@@ -8,11 +8,15 @@ export default class SelectField extends Component {
   };
 
   render() {
-    const { input, label, meta, options } = this.props;
+    const { input, label, meta, options, required } = this.props;
     return (
       <div className="boss-form__field">
         <label className="boss-form__label">
-          <span className="boss-form__label-text">{label}</span>
+          {label && (
+            <span className="boss-form__label-text">
+              {label} {required ? '*' : ''}
+            </span>
+          )}
         </label>
         <div className="boss-form__select">
           <Select onChange={this.handleChange} value={input.value} options={options} simpleValue />

@@ -11,7 +11,8 @@ export const staffMemberReducer = handleActions(
       } = action;
       return staffMember;
     },
-    [types.CHANGE_PERSONAL_DETAILS]: (state, action) => {
+    [types.UPDATE_STAFF_MEMBER_PROFILE]: (state, action) => {
+      // console.log('UPDATE_STAFF_MEMBER_PROFILE');
       return action.payload;
     },
   },
