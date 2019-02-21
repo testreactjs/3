@@ -7,9 +7,7 @@ class ContactDetails extends React.Component {
   onSubmit = values => {
     const { onSubmit } = this.props;
     return onSubmit(values).then(response => {
-      // console.log(response.status);
       if (response.status === 422) {
-        // console.log('PersonalDetailsForm', response.data.errors);
         return response.data.errors;
       }
       return response;
@@ -17,7 +15,6 @@ class ContactDetails extends React.Component {
   };
 
   render() {
-    // console.log('this.props', this.props);
     const { initialValues } = this.props;
     return (
       <Form
